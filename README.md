@@ -1,21 +1,10 @@
----
-output: github_document
----
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
 
 # path.chain <img src='man/figures/logo.png' align="right" height="139" />
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 > Concise structure for chainable paths
@@ -26,12 +15,12 @@ knitr::opts_chunk$set(
 # install.packages("devtools")
 devtools::install_github("krzjoa/learning-R")
 ```
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+``` r
 library(path.chain)
 ## basic example code
 ```
-
