@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581119515581.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2305893419",
+    "id" : "99415514",
+    "lastKnownWriteTime" : 1581121302,
+    "last_content_update" : 1581121302205,
+    "path" : "~/Pulpit/learning-R/path.chain/path.chain/R/relative.R",
+    "project_path" : "R/relative.R",
+    "properties" : {
+        "cursorPosition" : "65,48",
+        "scrollLine" : "56",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581119881874.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3570066519",
+    "id" : "873367A9",
+    "lastKnownWriteTime" : 1580942201,
+    "last_content_update" : 1580942201,
+    "path" : "~/Pulpit/learning-R/path/path.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "37,50",
+        "scrollLine" : "31"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

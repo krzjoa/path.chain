@@ -1,0 +1,88 @@
+#' @name path_elem
+#' @title Path element - directory or file name
+#' @param node Current node name
+#' @param children list of children - path_elems
+#' @examples
+#' # If we want to create our chain manually, we have start from the leaves
+#' level2.b <- path_elem("fileA.RData")
+#' level2.a <- path_elem("fileB.RData")
+#' level1 <- path_elem("data", list(level2.a = level2.a , level2.b = level2.b))
+#' root <- path_elem("files", list(level1))
+#' # Print root path
+#' root$.
+#' # Print file path using chaining
+#' root$data$level2.a
+path_elem <- function(node = NULL, children = NULL){
+  if(is.null(names(children)) & !is.null(children))
+    children <- setNames(children, sapply(children, function(x) attr(x, 'node')))
+  nms <- names(children)
+  path.elem <- structure(list(), class = "path_elem")
+  attr(path.elem, 'node') <- node
+  for(i in seq_along(children)){path.elem[[nms[[i]]]] <- children[[i]]}
+  path.elem[['.']] <- node
+  return(path.elem)
+}
+
+#' @name print
+#' @title Print path_elem
+print.path_elem <- function(x, ...){
+  cat(sprintf("path_elem \n root: %s \n childen: %d",
+              attr(x, 'node'),
+              length(x))
+  )
+  x
+}
+
+#' @name Access path_elem object
+`$.path_elem` <- function(a, b){
+
+  if(length(a[[b]]) == 1 || b == "."){
+    raw.string <- deparse(substitute(a))
+    splitted.path <- strsplit(raw.string, "\\$")[[1]]
+    root.object <- get(splitted.path[1], parent.frame())
+
+    splitted.path <- splitted.path[-1]
+    elem.to.be.removed <- grepl("`.*`", splitted.path)
+    splitted.path[elem.to.be.removed] <- substr(splitted.path[elem.to.be.removed], 2,
+                                                nchar(splitted.path[elem.to.be.removed]))
+    splitted.path <- c(splitted.path, b)
+
+    fun <- function(x, y){
+      obj <- x[[1]]
+      last.node <- attr(obj[[y]], 'node')
+      last.node <- if(is.null(last.node)) "" else last.node
+      list(obj[[y]], file.path(x[[2]], last.node))
+    }
+
+    Reduce(fun, splitted.path, list(root.object, attr(root.object, 'node')))[[2]]
+  } else {
+    a[[b]]
+  }
+}
+
+relative_path_chain <- function(path){
+  if(dir.exists(path)){
+    file.list <- list.files(path, recursive = FALSE,
+                            include.dirs = TRUE)
+    file.list <- setNames(file.list, naming(file.list))
+    c(list('.' = path), as.list(Map(nested_path, file.list)))
+  } else {
+    path
+  }
+}
+
+
+dir_structure <- function(file.section, root.key = 'kRoot'){
+  # browser()
+  if(length(file.section) > 1){
+    node <- file.section[[root.key]]
+    children <- file.section[which(names(file.section) != root.key)]
+    path_elem(node, Map(dir_structure, children))
+  } else {
+    path_elem(node = file.section[[1]])
+  }
+}
+
+rpath <-dir_structure("..")
+rpath$.
+
