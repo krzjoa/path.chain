@@ -5,6 +5,10 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.org/krzjoa/path.chain.svg?branch=master)](https://travis-ci.org/krzjoa/path.chain)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/krzjoa/path.chain?branch=master&svg=true)](https://ci.appveyor.com/project/krzjoa/path.chain)
 <!-- badges: end -->
 
 > Concise structure for chainable paths
@@ -18,7 +22,12 @@ devtools::install_github("krzjoa/learning-R")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+If you are using RStudio, you know that among many excellent features of
+this IDE the **path autocompleteion**. However, you can also meet
+situations, when that may be not enough.
+
+Most of all, I mean some bigger projects, where you are storing some
+complex file structure in **config**.
 
 ``` r
 library(path.chain)

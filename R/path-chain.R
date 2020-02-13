@@ -1,7 +1,9 @@
 #' @name path_elem
 #' @title Path element - directory or file name
-#' @param node Current node name
+#' @description A 'link' of path_chain object
+#' @param node Current node name; character
 #' @param children list of children - path_elems
+#' @return path_elem object
 #' @examples
 #' # If we want to create our chain manually, we have start from the leaves
 #' level2.b <- path_elem("fileA.RData")
@@ -25,7 +27,7 @@ path_elem <- function(node = NULL, children = NULL){
 }
 
 #' @name print
-#' @title Print path_elem
+#' @title Print path_elem object
 #' @export
 print.path_elem <- function(x, ...){
   cat(sprintf("path_elem \n root: %s \n childen: %d",
@@ -37,9 +39,9 @@ print.path_elem <- function(x, ...){
 
 #' @name $.path_elem
 #' @title  Access path_elem object
-#' @param node
-#' @param child
-#' @return path_elem
+#' @param node path_elem
+#' @param child nested path_elem name
+#' @return path_elem or chaacter, if path indicates leaf of structure tree
 #' @export
 `$.path_elem` <- function(node, child){
 
@@ -70,22 +72,24 @@ print.path_elem <- function(x, ...){
 #' @name relative_path_chain
 #' @title Create chainable path
 #' @param path Path
+#' @description This function returns
 #' @return path_elem object
 #' @examples
-#' chained.path <- relative_path_chain(".")
+#' chained.path <- path_chain(".")
 #' @export
-relative_path_chain <- function(path){
+path_chain <- function(path){
   if(dir.exists(path)){
     file.list <- list.files(path, recursive = FALSE,
                             include.dirs = TRUE)
     file.list <- setNames(file.list, file.list)
-    path_elem(node = path, as.list(Map(relative_path_chain, file.list)))
+    path_elem(node = path, as.list(Map(path_chain, file.list)))
   } else {
     path_elem(node = path)
   }
 }
 
 #' @name path_chain_config
+#' @title Load path chain from configuration file
 #' @param config.section
 #' @param root.key
 #' @export
@@ -98,4 +102,3 @@ path_chain_config <- function(config.section, root.key = 'kRoot'){
     path_elem(node = config.section[[1]])
   }
 }
-

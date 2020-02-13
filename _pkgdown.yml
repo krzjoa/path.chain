@@ -1,1 +1,18 @@
 destination: docs
+template:
+  params:
+    bootswatch: cosmo
+authors:
+  Krzysztof Joachimiak:
+    href: https://krzjoa.github.io
+reference:
+- title: Chainable paths
+  contents:
+  - path_chain
+  - path_elem
+  - $.path_elem
+  - print.path_elem
+  - full_path_chain
+- title: Sample path
+  contents:
+  - create_sample_dir
