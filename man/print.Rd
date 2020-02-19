@@ -2,11 +2,11 @@
 % Please edit documentation in R/path-chain.R
 \name{print}
 \alias{print}
-\alias{print.path_elem}
-\title{Print path_elem object}
+\alias{print.path_chain}
+\title{Print path_chain object}
 \usage{
-\method{print}{path_elem}(x, ...)
+\method{print}{path_chain}(x, ...)
 }
 \description{
-Print path_elem object
+Print path_chain object
 }

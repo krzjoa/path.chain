@@ -1,49 +1,49 @@
-#' @name path_elem
+#' @name path_chain
 #' @title Path element - directory or file name
 #' @description A 'link' of path_chain object
 #' @param node Current node name; character
-#' @param children list of children - path_elems
-#' @return path_elem object
+#' @param children list of children - path_chains
+#' @return path_chain object
 #' @examples
 #' # If we want to create our chain manually, we have start from the leaves
-#' level2.b <- path_elem("fileA.RData")
-#' level2.a <- path_elem("fileB.RData")
-#' level1 <- path_elem("data", list(level2.a = level2.a , level2.b = level2.b))
-#' root <- path_elem("files", list(level1))
+#' level2.b <- path_chain("fileA.RData")
+#' level2.a <- path_chain("fileB.RData")
+#' level1 <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
+#' root <- path_chain("files", list(level1))
 #' # Print root path
 #' root$.
 #' # Print file path using chaining
 #' root$data$level2.a
 #' @export
-path_elem <- function(node = NULL, children = NULL){
+path_chain <- function(node = NULL, children = NULL){
   if(is.null(names(children)) & !is.null(children))
     children <- setNames(children, sapply(children, function(x) attr(x, 'node')))
   nms <- names(children)
-  path.elem <- structure(list(), class = "path_elem")
-  attr(path.elem, 'node') <- node
-  for(i in seq_along(children)){path.elem[[nms[[i]]]] <- children[[i]]}
-  path.elem[['.']] <- node
-  return(path.elem)
+  path.chain <- structure(list(), class = "path_chain")
+  attr(path.chain, 'node') <- node
+  for(i in seq_along(children)){path.chain[[nms[[i]]]] <- children[[i]]}
+  path.chain[['.']] <- node
+  return(path.chain)
 }
 
 #' @name print
-#' @title Print path_elem object
+#' @title Print path_chain object
 #' @export
-print.path_elem <- function(x, ...){
-  cat(sprintf("path_elem \n root: %s \n childen: %d",
+print.path_chain <- function(x, ...){
+  cat(sprintf("path_chain \n root: %s \n childen: %d",
               attr(x, 'node'),
               length(x))
   )
   x
 }
 
-#' @name $.path_elem
-#' @title  Access path_elem object
-#' @param node path_elem
-#' @param child nested path_elem name
-#' @return path_elem or chaacter, if path indicates leaf of structure tree
+#' @name $.path_chain
+#' @title  Access path_chain object
+#' @param node path_chain
+#' @param child nested path_chain name
+#' @return path_chain or character, if path indicates leaf of structure tree
 #' @export
-`$.path_elem` <- function(node, child){
+`$.path_chain` <- function(node, child){
 
   if(length(node[[child]]) == 1 || child == "."){
     raw.string <- deparse(substitute(node))
@@ -69,36 +69,42 @@ print.path_elem <- function(x, ...){
   }
 }
 
-#' @name relative_path_chain
+#' @name as_path_chain
 #' @title Create chainable path
 #' @param path Path
+#' @param root.key
 #' @description This function returns
-#' @return path_elem object
+#' @return path_chain object
 #' @examples
-#' chained.path <- path_chain(".")
+#' # A
+#' chainable.path <- as_path_chain(".")
 #' @export
-path_chain <- function(path){
+as_path_chain <- function(path, ...){
+  UseMethod("as_path_chain", path)
+}
+
+#' @rdname as_path_chain
+#' @export
+as_path_chain.character <- function(path){
   if(dir.exists(path)){
     file.list <- list.files(path, recursive = FALSE,
                             include.dirs = TRUE)
     file.list <- setNames(file.list, file.list)
-    path_elem(node = path, as.list(Map(path_chain, file.list)))
+    path_chain(node = path, as.list(Map(as_path_chain.character, file.list)))
   } else {
-    path_elem(node = path)
+    path_chain(node = path)
   }
 }
 
-#' @name path_chain_config
-#' @title Load path chain from configuration file
-#' @param config.section
-#' @param root.key
+#' @rdname as_path_chain
 #' @export
-path_chain_config <- function(config.section, root.key = 'kRoot'){
+as_path_chain.list <- function(config.section, root.key = 'kRoot'){
   if(length(config.section) > 1){
     node <- config.section[[root.key]]
     children <- config.section[which(names(config.section) != root.key)]
-    path_elem(node, Map(dir_structure, children))
+    path_chain(node, Map(dir_structure, children))
   } else {
-    path_elem(node = config.section[[1]])
+    path_chain(node = config.section[[1]])
   }
 }
+
