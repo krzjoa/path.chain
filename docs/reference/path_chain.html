@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • path.chain</title>
+<title>Path element - directory or file name — path_chain • path.chain</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,7 +42,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Path element - directory or file name — path_chain" />
+<meta property="og:description" content="A 'link' of path_chain object" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -63,7 +64,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -110,87 +111,54 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Path element - directory or file name</h1>
+    <small class="dont-index">Source: <a href='https://github.com/krzjoa/path.chain/blob/master/R/path-chain.R'><code>R/path-chain.R</code></a></small>
+    <div class="hidden name"><code>path_chain.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>A 'link' of path_chain object</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>path_chain</span>(<span class='kw'>node</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>children</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-chainable-paths" class="hasAnchor"><a href="#section-chainable-paths" class="anchor"></a>Chainable paths</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="path_chain.html">path_chain()</a></code> </p>
-        </td>
-        <td><p>Path element - directory or file name</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as_path_chain.html">as_path_chain.list()</a></code> </p>
-        </td>
-        <td><p>Create chainable path</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_path_chain.html">create_path_chain()</a></code> </p>
-        </td>
-        <td><p>Get directory structure and create path_chain object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cash-.path_chain.html">`$`(<i>&lt;path_chain&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Access path_chain object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.html">print(<i>&lt;path_chain&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print path_chain object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="full_path_chain.html">full_path_chain()</a></code> </p>
-        </td>
-        <td><p>Full path chain</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-sample-path" class="hasAnchor"><a href="#section-sample-path" class="anchor"></a>Sample path</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="create_sample_dir.html">create_sample_dir()</a></code> </p>
-        </td>
-        <td><p>Create sample directory</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>node</th>
+      <td><p>Current node name; character</p></td>
+    </tr>
+    <tr>
+      <th>children</th>
+      <td><p>list of children - path_chains</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>path_chain object</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># If we want to create our chain manually, we have start from the leaves</span>
+<span class='no'>level2.b</span> <span class='kw'>&lt;-</span> <span class='fu'>path_chain</span>(<span class='st'>"fileA.RData"</span>)
+<span class='no'>level2.a</span> <span class='kw'>&lt;-</span> <span class='fu'>path_chain</span>(<span class='st'>"fileB.RData"</span>)
+<span class='no'>level1</span> <span class='kw'>&lt;-</span> <span class='fu'>path_chain</span>(<span class='st'>"data"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>level2.a</span> <span class='kw'>=</span> <span class='no'>level2.a</span> , <span class='kw'>level2.b</span> <span class='kw'>=</span> <span class='no'>level2.b</span>))
+<span class='no'>root</span> <span class='kw'>&lt;-</span> <span class='fu'>path_chain</span>(<span class='st'>"files"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>level1</span>))
+<span class='co'># Print root path</span>
+<span class='no'>root</span>$<span class='no'>.</span></div><div class='output co'>#&gt; [1] "files/"</div><div class='input'><span class='co'># Print file path using chaining</span>
+<span class='no'>root</span>$<span class='no'>data</span>$<span class='no'>level2.a</span></div><div class='output co'>#&gt; [1] "files/data/fileB.RData"</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-chainable-paths">Chainable paths</a></li>
-      <li><a href="#section-sample-path">Sample path</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

@@ -9,9 +9,10 @@ reference:
 - title: Chainable paths
   contents:
   - path_chain
-  - path_elem
-  - $.path_elem
-  - print.path_elem
+  - as_path_chain
+  - create_path_chain
+  - $.path_chain
+  - print.path_chain
   - full_path_chain
 - title: Sample path
   contents:

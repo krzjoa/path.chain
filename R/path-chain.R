@@ -69,23 +69,16 @@ print.path_chain <- function(x, ...){
   }
 }
 
-#' @name as_path_chain
-#' @title Create chainable path
+#' @name create_path_chain
+#' @title Get directory structure and create path_chain object
 #' @param path Path
-#' @param root.key
 #' @description This function returns
 #' @return path_chain object
 #' @examples
 #' # A
 #' chainable.path <- as_path_chain(".")
 #' @export
-as_path_chain <- function(path, ...){
-  UseMethod("as_path_chain", path)
-}
-
-#' @rdname as_path_chain
-#' @export
-as_path_chain.character <- function(path){
+create_path_chain <- function(path){
   if(dir.exists(path)){
     file.list <- list.files(path, recursive = FALSE,
                             include.dirs = TRUE)
@@ -96,7 +89,15 @@ as_path_chain.character <- function(path){
   }
 }
 
-#' @rdname as_path_chain
+#' @name as_path_chain
+#' @title Create chainable path
+#' @param path Path
+#' @param root.key
+#' @description This function returns
+#' @return path_chain object
+#' @examples
+#' # A
+#' chainable.path <- as_path_chain(".")
 #' @export
 as_path_chain.list <- function(config.section, root.key = 'kRoot'){
   if(length(config.section) > 1){
@@ -107,4 +108,3 @@ as_path_chain.list <- function(config.section, root.key = 'kRoot'){
     path_chain(node = config.section[[1]])
   }
 }
-
