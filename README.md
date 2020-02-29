@@ -26,13 +26,11 @@ devtools::install_github("krzjoa/path.chain")
 ## Example
 
 If you are using RStudio, you know that among many excellent features of
-this IDE the **path autocompleteion**. However, you can also meet
-situations, when that may be not enough.
-
-Most of all, I mean some bigger projects, where you are storing some
-complex file structure in **config**.
+this IDE the **path autocompletion**. However, you can also meet
+situations, when that may be not enough. Most of all, I mean bigger
+projects, where you are storing some complex file structure in
+**config**.
 
 ``` r
 library(path.chain)
-## basic example code
 ```

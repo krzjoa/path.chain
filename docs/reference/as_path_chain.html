@@ -122,7 +122,7 @@
     <p>This function returns</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as_path_chain.list</span>(<span class='no'>config.section</span>, <span class='kw'>root.key</span> <span class='kw'>=</span> <span class='st'>"kRoot"</span>)</pre>
+    <pre class="usage"><span class='fu'>as_path_chain</span>(<span class='no'>config.section</span>, <span class='kw'>root.key</span> <span class='kw'>=</span> <span class='st'>"kRoot"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,8 +138,8 @@
     <p>path_chain object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># A</span>
-<span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'>as_path_chain</span>(<span class='st'>"."</span>)</div><div class='output co'>#&gt; <span class='error'>Error in as_path_chain("."): nie udało się znaleźć funkcji 'as_path_chain'</span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>nested.list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>kRoot</span> <span class='kw'>=</span> <span class='st'>"root"</span>, <span class='st'>"file1.txt"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"subdir"</span>, <span class='st'>"file2.csv"</span>))
+<span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'>as_path_chain</span>(<span class='no'>nested.list</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

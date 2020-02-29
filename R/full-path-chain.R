@@ -2,6 +2,11 @@
 #' @title Full path chain
 #' @param path root path
 #' @param naming naming function
+#' @description `full_path_chain` represents another approach to creating chainable paths
+#' In contrast to `path_chain`, this functon creates just a list with nested list with full paths as a leaves.
+#' @examples
+#' chainable.path <- full_path_chain(".")
+#' chainable.path
 #' @return list of lists and character objects
 #' @export
 full_path_chain <- function(path = ".", naming = basename){

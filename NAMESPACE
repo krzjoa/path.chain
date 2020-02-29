@@ -2,7 +2,7 @@
 
 S3method("$",path_chain)
 S3method(print,path_chain)
-export(as_path_chain.list)
+export(as_path_chain)
 export(create_path_chain)
 export(create_sample_dir)
 export(full_path_chain)

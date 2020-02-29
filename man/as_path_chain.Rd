@@ -2,10 +2,9 @@
 % Please edit documentation in R/path-chain.R
 \name{as_path_chain}
 \alias{as_path_chain}
-\alias{as_path_chain.list}
 \title{Create chainable path}
 \usage{
-as_path_chain.list(config.section, root.key = "kRoot")
+as_path_chain(config.section, root.key = "kRoot")
 }
 \arguments{
 \item{path}{Path}
@@ -17,6 +16,6 @@ path_chain object
 This function returns
 }
 \examples{
-# A
-chainable.path <- as_path_chain(".")
+nested.list <- list(kRoot = "root", "file1.txt", list("subdir", "file2.csv"))
+chainable.path <- as_path_chain(nested.list)
 }

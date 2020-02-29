@@ -43,7 +43,8 @@
 
 
 <meta property="og:title" content="Full path chain — full_path_chain" />
-<meta property="og:description" content="Full path chain" />
+<meta property="og:description" content="`full_path_chain` represents another approach to creating chainable paths
+In contrast to `path_chain`, this functon creates just a list with nested list with full paths as a leaves." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -119,7 +120,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Full path chain</p>
+    <p>`full_path_chain` represents another approach to creating chainable paths
+In contrast to `path_chain`, this functon creates just a list with nested list with full paths as a leaves.</p>
     </div>
 
     <pre class="usage"><span class='fu'>full_path_chain</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>naming</span> <span class='kw'>=</span> <span class='no'>basename</span>)</pre>
@@ -141,12 +143,68 @@
 
     <p>list of lists and character objects</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'>full_path_chain</span>(<span class='st'>"."</span>)
+<span class='no'>chainable.path</span></div><div class='output co'>#&gt; $.
+#&gt; [1] "."
+#&gt; 
+#&gt; $as_path_chain.html
+#&gt; [1] "./as_path_chain.html"
+#&gt; 
+#&gt; $`cash-.path_chain.html`
+#&gt; [1] "./cash-.path_chain.html"
+#&gt; 
+#&gt; $`cash-.path_elem.html`
+#&gt; [1] "./cash-.path_elem.html"
+#&gt; 
+#&gt; $create_path_chain.html
+#&gt; [1] "./create_path_chain.html"
+#&gt; 
+#&gt; $create_sample_dir.html
+#&gt; [1] "./create_sample_dir.html"
+#&gt; 
+#&gt; $figures
+#&gt; $figures$.
+#&gt; [1] "./figures"
+#&gt; 
+#&gt; $figures$logo.png
+#&gt; [1] "./figures/logo.png"
+#&gt; 
+#&gt; $figures$pathchain.svg
+#&gt; [1] "./figures/pathchain.svg"
+#&gt; 
+#&gt; 
+#&gt; $full_path_chain.html
+#&gt; [1] "./full_path_chain.html"
+#&gt; 
+#&gt; $hello.html
+#&gt; [1] "./hello.html"
+#&gt; 
+#&gt; $index.html
+#&gt; [1] "./index.html"
+#&gt; 
+#&gt; $path_chain_config.html
+#&gt; [1] "./path_chain_config.html"
+#&gt; 
+#&gt; $path_chain.html
+#&gt; [1] "./path_chain.html"
+#&gt; 
+#&gt; $path_elem.html
+#&gt; [1] "./path_elem.html"
+#&gt; 
+#&gt; $print.html
+#&gt; [1] "./print.html"
+#&gt; 
+#&gt; $relative_path_chain.html
+#&gt; [1] "./relative_path_chain.html"
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

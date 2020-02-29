@@ -17,3 +17,14 @@ path_chain or character, if path indicates leaf of structure tree
 \description{
 Access path_chain object
 }
+\examples{
+#' If we want to create our chain manually, we have start from the leaves
+level2.b <- path_chain("fileA.RData")
+level2.a <- path_chain("fileB.RData")
+level1 <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
+root <- path_chain("files", list(level1))
+# Print root path
+root$.
+# Print file path using chaining
+root$data$level2.a
+}

@@ -16,6 +16,5 @@ path_chain object
 This function returns
 }
 \examples{
-# A
-chainable.path <- as_path_chain(".")
+chainable.path <- create_path_chain(".")
 }

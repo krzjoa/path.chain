@@ -10,3 +10,10 @@
 \description{
 Print path_chain object
 }
+\examples{
+level2.b <- path_chain("fileA.RData")
+level2.a <- path_chain("fileB.RData")
+level1 <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
+root <- path_chain("files", list(level1))
+print(root)
+}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/path-chain.R
 \name{path_chain}
 \alias{path_chain}
-\title{Path element - directory or file name}
+\title{Create path_chain object - a directory or a file}
 \usage{
 path_chain(node = NULL, children = NULL)
 }
