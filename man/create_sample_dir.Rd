@@ -4,8 +4,12 @@
 \alias{create_sample_dir}
 \title{Create sample directory}
 \usage{
-create_sample_dir(root = ".")
+create_sample_dir(root = ".", name = "files")
 }
 \description{
 Creates sample nested directory to test and learn path.chain package
+}
+\examples{
+create_sample_dir(name = "files")
+list.files("files", all.files = TRUE, recursive = TRUE, include.dirs = TRUE)
 }

@@ -95,7 +95,7 @@ create_path_chain <- function(path){
   if(dir.exists(path)){
     file.list <- list.files(path, recursive = FALSE,
                             include.dirs = TRUE)
-    file.list <- setNames(file.list, file.list)
+    file.list <- setNames(file.path(path, file.list), file.list)
     path_chain(node = path, as.list(Map(create_path_chain, file.list)))
   } else {
     path_chain(node = path)

@@ -1,0 +1,13 @@
+data:
+  example1.RData:
+    '.': files/data/example1.RData
+  example2.RData:
+    '.': files/data/example2.RData
+  persons.csv:
+    '.': files/data/persons.csv
+  '.': files/data
+docs:
+  schema.txt:
+    '.': files/docs/schema.txt
+  '.': files/docs
+'.': files

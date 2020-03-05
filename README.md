@@ -26,11 +26,44 @@ devtools::install_github("krzjoa/path.chain")
 ## Example
 
 If you are using RStudio, you know that among many excellent features of
-this IDE the **path autocompletion**. However, you can also meet
-situations, when that may be not enough. Most of all, I mean bigger
-projects, where you are storing some complex file structure in
-**config**.
+this IDE there is a **path autocompletion**.
+
+![rstudio](man/figures/rstudio-autocompletion.gif)
+
+However, you can also meet situations, when that may be not enough. Most
+of all, I mean bigger projects, where you store a complex file structure
+in the **config** file. You can handle such configuration YAML file
+using the library named [`config`](https://github.com/rstudio/config).
+You may encounter a situation, when you’ll want to save current
+directory structure in this config.
 
 ``` r
 library(path.chain)
+
+# Create an example file stucture
+create_sample_dir(".", name = "files")
+#> [1] TRUE
+
+# Sample structure we've already created looks as follows
+fs::dir_tree("files")
+#> files
+#> ├── data
+#> │   ├── example1.RData
+#> │   ├── example2.RData
+#> │   └── persons.csv
+#> └── docs
+#>     └── schema.txt
+
+# Loading stucture with 
+file.structure <- create_path_chain("files")
+file.structure$data$example1.RData
+#> [1] "files/files/data/files/data/example1.RData"
+
+# Saving file structure
+yaml::write_yaml(file.structure, file = "config.yml")
+```
+
+``` yaml
+data:
+  kRoot: data
 ```
