@@ -66,4 +66,6 @@ data:
 
 ```
 
-
+```{r rm, include=FALSE, results='hide'}
+unlink("files", recursive = TRUE)
+```
