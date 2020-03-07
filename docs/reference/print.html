@@ -114,7 +114,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Print path_chain object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/krzjoa/path.chain/blob/master/R/path-chain.R'><code>R/path-chain.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/krzjoa/path.chain/blob/master/R/aux.R'><code>R/aux.R</code></a></small>
     <div class="hidden name"><code>print.Rd</code></div>
     </div>
 
@@ -130,11 +130,16 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>level2.b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='path_chain.html'>path_chain</a></span>(<span class='st'>"fileA.RData"</span>)
 <span class='no'>level2.a</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='path_chain.html'>path_chain</a></span>(<span class='st'>"fileB.RData"</span>)
-<span class='no'>level1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='path_chain.html'>path_chain</a></span>(<span class='st'>"data"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>level2.a</span> <span class='kw'>=</span> <span class='no'>level2.a</span> , <span class='kw'>level2.b</span> <span class='kw'>=</span> <span class='no'>level2.b</span>))
-<span class='no'>root</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='path_chain.html'>path_chain</a></span>(<span class='st'>"files"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>level1</span>))
+<span class='no'>level1</span>   <span class='kw'>&lt;-</span> <span class='fu'><a href='path_chain.html'>path_chain</a></span>(<span class='st'>"data"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>level2.a</span> <span class='kw'>=</span> <span class='no'>level2.a</span> , <span class='kw'>level2.b</span> <span class='kw'>=</span> <span class='no'>level2.b</span>))
+<span class='no'>root</span>     <span class='kw'>&lt;-</span> <span class='fu'><a href='path_chain.html'>path_chain</a></span>(<span class='st'>"files"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>level1</span>))
 <span class='fu'>print</span>(<span class='no'>root</span>)</div><div class='output co'>#&gt; path_chain 
 #&gt;  root: files 
-#&gt;  childen: 2</div></pre>
+#&gt;  childen: 2</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"files"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_path_chain.html'>create_path_chain</a></span>(<span class='st'>"files"</span>)
+<span class='fu'>print</span>(<span class='no'>chainable.path</span>)</div><div class='output co'>#&gt; path_chain 
+#&gt;  root: files 
+#&gt;  childen: 1</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"files"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

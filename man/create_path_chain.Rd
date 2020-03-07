@@ -16,5 +16,7 @@ path_chain object
 This function returns
 }
 \examples{
-chainable.path <- create_path_chain(".")
+unlink("files", recursive = TRUE)
+chainable.path <- create_path_chain("files")
+fs::dir_tree("files")
 }

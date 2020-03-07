@@ -38,6 +38,7 @@ You may encounter a situation, when you’ll want to save current
 directory structure in this config.
 
 ``` r
+library(magrittr)
 library(path.chain)
 
 # Create an example file stucture
@@ -57,10 +58,12 @@ fs::dir_tree("files")
 # Loading stucture with 
 file.structure <- create_path_chain("files")
 file.structure$data$example1.RData
-#> [1] "files/files/data/files/data/example1.RData"
+#> [1] "files/data/example1.RData"
 
 # Saving file structure
-yaml::write_yaml(file.structure, file = "config.yml")
+file.structure %>% 
+  as.list() %>% 
+  yaml::write_yaml(file = "config.yml")
 ```
 
 ``` yaml

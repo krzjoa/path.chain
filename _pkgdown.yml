@@ -9,11 +9,15 @@ reference:
 - title: Chainable paths
   contents:
   - path_chain
-  - as_path_chain
   - create_path_chain
   - $.path_chain
-  - print.path_chain
   - full_path_chain
-- title: Sample path
+- title: Type conversion
   contents:
+  - as_path_chain
+  - as.list.path_chain
+- title: Auxilliary functions
+  contents:
+  - path_children
   - create_sample_dir
+  - print.path_chain

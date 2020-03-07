@@ -8,8 +8,8 @@
 #' # If we want to create our chain manually, we have start from the leaves
 #' level2.b <- path_chain("fileA.RData")
 #' level2.a <- path_chain("fileB.RData")
-#' level1 <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
-#' root <- path_chain("files", list(level1))
+#' level1   <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
+#' root     <- path_chain("files", list(level1))
 #' # Print root path
 #' root$.
 #' # Print file path using chaining
@@ -26,21 +26,6 @@ path_chain <- function(node = NULL, children = NULL){
   return(path.chain)
 }
 
-#' @name print
-#' @title Print path_chain object
-#' @examples
-#' level2.b <- path_chain("fileA.RData")
-#' level2.a <- path_chain("fileB.RData")
-#' level1 <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
-#' root <- path_chain("files", list(level1))
-#' print(root)
-#' @export
-print.path_chain <- function(x, ...){
-  cat(sprintf("path_chain \n root: %s \n childen: %d",
-              attr(x, 'node'),
-              length(x)))
-}
-
 #' @name $.path_chain
 #' @title  Access path_chain object
 #' @param node path_chain
@@ -50,8 +35,8 @@ print.path_chain <- function(x, ...){
 #' #' If we want to create our chain manually, we have start from the leaves
 #' level2.b <- path_chain("fileA.RData")
 #' level2.a <- path_chain("fileB.RData")
-#' level1 <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
-#' root <- path_chain("files", list(level1))
+#' level1   <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
+#' root     <- path_chain("files", list(level1))
 #' # Print root path
 #' root$.
 #' # Print file path using chaining
@@ -60,11 +45,11 @@ print.path_chain <- function(x, ...){
 `$.path_chain` <- function(node, child){
 
   if(length(node[[child]]) == 1 || child == "."){
-    raw.string <- deparse(substitute(node))
+    raw.string    <- deparse(substitute(node))
     splitted.path <- strsplit(raw.string, "\\$")[[1]]
-    root.object <- get(splitted.path[1], parent.frame())
+    root.object   <- get(splitted.path[1], parent.frame())
 
-    splitted.path <- splitted.path[-1]
+    splitted.path     <- splitted.path[-1]
     elem.to.be.removed <- grepl("`.*`", splitted.path)
     splitted.path[elem.to.be.removed] <- substr(splitted.path[elem.to.be.removed], 2,
                                                 nchar(splitted.path[elem.to.be.removed]))
@@ -89,35 +74,17 @@ print.path_chain <- function(x, ...){
 #' @description This function returns
 #' @return path_chain object
 #' @examples
-#' chainable.path <- create_path_chain(".")
+#' unlink("files", recursive = TRUE)
+#' chainable.path <- create_path_chain("files")
+#' fs::dir_tree("files")
 #' @export
 create_path_chain <- function(path){
   if(dir.exists(path)){
     file.list <- list.files(path, recursive = FALSE,
                             include.dirs = TRUE)
     file.list <- setNames(file.path(path, file.list), file.list)
-    path_chain(node = path, as.list(Map(create_path_chain, file.list)))
+    path_chain(node = basename(path), as.list(Map(create_path_chain, file.list)))
   } else {
-    path_chain(node = path)
-  }
-}
-
-#' @name as_path_chain
-#' @title Create chainable path
-#' @param path Path
-#' @param root.key
-#' @description This function returns
-#' @return path_chain object
-#' @examples
-#' nested.list <- list(kRoot = "root", "file1.txt", list("subdir", "file2.csv"))
-#' chainable.path <- as_path_chain(nested.list)
-#' @export
-as_path_chain <- function(config.section, root.key = 'kRoot'){
-  if(length(config.section) > 1){
-    node <- config.section[[root.key]]
-    children <- config.section[which(names(config.section) != root.key)]
-    path_chain(node, Map(as_path_chain, children))
-  } else {
-    path_chain(node = config.section[[1]])
+    path_chain(node = basename(path))
   }
 }

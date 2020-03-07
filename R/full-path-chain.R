@@ -5,6 +5,7 @@
 #' @description `full_path_chain` represents another approach to creating chainable paths
 #' In contrast to `path_chain`, this functon creates just a list with nested list with full paths as a leaves.
 #' @examples
+#' fs::dir_list()
 #' chainable.path <- full_path_chain(".")
 #' chainable.path
 #' @return list of lists and character objects

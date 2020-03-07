@@ -144,12 +144,15 @@ In contrast to `path_chain`, this functon creates just a list with nested list w
     <p>list of lists and character objects</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'>full_path_chain</span>(<span class='st'>"."</span>)
+    <pre class="examples"><div class='input'><span class='kw pkg'>fs</span><span class='kw ns'>::</span><span class='fu'>dir_list</span>()</div><div class='output co'>#&gt; <span class='error'>Error: 'dir_list' nie jest eksportowanym obiektem z 'namespace:fs'</span></div><div class='input'><span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'>full_path_chain</span>(<span class='st'>"."</span>)
 <span class='no'>chainable.path</span></div><div class='output co'>#&gt; $.
 #&gt; [1] "."
 #&gt; 
 #&gt; $as_path_chain.html
 #&gt; [1] "./as_path_chain.html"
+#&gt; 
+#&gt; $as.list.html
+#&gt; [1] "./as.list.html"
 #&gt; 
 #&gt; $`cash-.path_chain.html`
 #&gt; [1] "./cash-.path_chain.html"
