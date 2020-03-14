@@ -7,3 +7,5 @@
 ^\.travis\.yml$
 ^appveyor\.yml$
 ^LICENSE\.md$
+^doc$
+^Meta$

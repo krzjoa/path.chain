@@ -78,13 +78,16 @@ path_chain <- function(node = NULL, children = NULL){
 #' chainable.path <- create_path_chain("files")
 #' fs::dir_tree("files")
 #' @export
-create_path_chain <- function(path){
+create_path_chain <- function(path, naming = basename){
   if(dir.exists(path)){
     file.list <- list.files(path, recursive = FALSE,
                             include.dirs = TRUE)
     file.list <- setNames(file.path(path, file.list), file.list)
-    path_chain(node = basename(path), as.list(Map(create_path_chain, file.list)))
+    call_create_path_chain <- function(x) create_path_chain(x, naming = naming)
+    children <-Map(call_create_path_chain, file.list)
+    children <- setNames(children, naming(file.list))
+    path_chain(node = basename(path), children)
   } else {
-    path_chain(node = basename(path))
+    path_chain(node = naming(path))
   }
 }

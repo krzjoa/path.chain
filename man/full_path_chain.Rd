@@ -4,10 +4,12 @@
 \alias{full_path_chain}
 \title{Full path chain}
 \usage{
-full_path_chain(path = ".", naming = basename)
+full_path_chain(path = ".", root.name = ".", naming = basename)
 }
 \arguments{
 \item{path}{root path}
+
+\item{root.name}{naming convention for root directory}
 
 \item{naming}{naming function}
 }

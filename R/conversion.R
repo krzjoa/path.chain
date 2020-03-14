@@ -24,6 +24,7 @@ as_path_chain <- function(config.section, root.name = 'kRoot'){
 #' @param root.name key for root directory; default: 'root.dir'
 #' @examples
 #' unlink("files", recursive = TRUE)
+#' create_sample_dir(name = "files")
 #' path.chain <- create_path_chain("files")
 #' as.list(path.chain)
 #' unlink("files", recursive = TRUE)
@@ -34,11 +35,7 @@ as.list.path_chain <- function(path.chain, root.name = "root.dir"){
   } else {
     l <- list()
     l[[root.name]] <- path.chain$.
-    c(l, Map(as.list.path_chain, path_children(path.chain)))
+    call_as.list.path_chain <- function(x) as.list.path_chain(x, root.name = root.name)
+    c(l, Map(call_as.list.path_chain, path_children(path.chain)))
   }
 }
-
-
-
-
-

@@ -19,5 +19,6 @@ reference:
 - title: Auxilliary functions
   contents:
   - path_children
+  - naming_k
   - create_sample_dir
   - print.path_chain

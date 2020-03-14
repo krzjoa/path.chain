@@ -4,7 +4,7 @@
 \alias{create_path_chain}
 \title{Get directory structure and create path_chain object}
 \usage{
-create_path_chain(path)
+create_path_chain(path, naming = basename)
 }
 \arguments{
 \item{path}{Path}

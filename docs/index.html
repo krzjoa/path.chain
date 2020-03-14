@@ -53,6 +53,18 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/working_with_config_files.html">Working with config files</a>
+    </li>
+  </ul>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -94,29 +106,32 @@
 <p>If you are using RStudio, you know that among many excellent features of this IDE there is a <strong>path autocompletion</strong>.</p>
 <p><img src="reference/figures/rstudio-autocompletion.gif" alt="rstudio"></p>
 <p>However, you can also meet situations, when that may be not enough. Most of all, I mean bigger projects, where you store a complex file structure in the <strong>config</strong> file. You can handle such configuration YAML file using the library named <a href="https://github.com/rstudio/config"><code>config</code></a>. You may encounter a situation, when you’ll want to save current directory structure in this config.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(path.chain)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># Create an example file stucture</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="reference/create_sample_dir.html">create_sample_dir</a></span>(<span class="st">"."</span>, <span class="dt">name =</span> <span class="st">"files"</span>)</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># Sample structure we've already created looks as follows</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">fs<span class="op">::</span><span class="kw"><a href="http://fs.r-lib.org/reference/dir_tree.html">dir_tree</a></span>(<span class="st">"files"</span>)</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; files</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; ├── data</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; │   ├── example1.RData</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; │   ├── example2.RData</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; │   └── persons.csv</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; └── docs</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt;     └── schema.txt</span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co"># Loading stucture with </span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18">file.structure &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_path_chain.html">create_path_chain</a></span>(<span class="st">"files"</span>)</a>
-<a class="sourceLine" id="cb2-19" data-line-number="19">file.structure<span class="op">$</span>data<span class="op">$</span>example1.RData</a>
-<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt; [1] "files/files/data/files/data/example1.RData"</span></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co"># Saving file structure</span></a>
-<a class="sourceLine" id="cb2-23" data-line-number="23">yaml<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/yaml/man/write_yaml.html">write_yaml</a></span>(file.structure, <span class="dt">file =</span> <span class="st">"config.yml"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(magrittr)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(path.chain)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># Create an example file stucture</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="reference/create_sample_dir.html">create_sample_dir</a></span>(<span class="st">"."</span>, <span class="dt">name =</span> <span class="st">"files"</span>)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co"># Sample structure we've already created looks as follows</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">fs<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/fs/man/dir_tree.html">dir_tree</a></span>(<span class="st">"files"</span>)</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; files</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; ├── data</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; │   ├── example1.RData</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; │   ├── example2.RData</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; │   └── persons.csv</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; └── docs</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt;     └── schema.txt</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co"># Loading stucture with </span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19">file.structure &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_path_chain.html">create_path_chain</a></span>(<span class="st">"files"</span>)</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">file.structure<span class="op">$</span>data<span class="op">$</span>example1.RData</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; [1] "files/data/example1.RData"</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co"># Saving file structure</span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24">file.structure <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="st">  </span><span class="kw"><a href="reference/as.list.html">as.list</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="st">  </span>yaml<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/yaml/man/write_yaml.html">write_yaml</a></span>(<span class="dt">file =</span> <span class="st">"config.yml"</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="fu">data:</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="fu">kRoot:</span><span class="at"> data</span></a></code></pre></div>
 </div>

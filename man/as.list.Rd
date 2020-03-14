@@ -8,14 +8,17 @@
 \method{as.list}{path_chain}(path.chain, root.name = "root.dir")
 }
 \arguments{
-\item{root.name}{key for root directory; default: 'root.dir'
-unlink("files", recursive = TRUE)
-path.chain <- create_path_chain("files")
-as.list(path.chain)
-unlink("files", recursive = TRUE)}
+\item{root.name}{key for root directory; default: 'root.dir'}
 
 \item{patch.chain}{a path_chain object}
 }
 \description{
 Convert object of type `path_chain` to list
+}
+\examples{
+unlink("files", recursive = TRUE)
+create_sample_dir(name = "files")
+path.chain <- create_path_chain("files")
+as.list(path.chain)
+unlink("files", recursive = TRUE)
 }

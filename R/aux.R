@@ -22,6 +22,7 @@ path_children <- function(path.chain){
 #' print(root)
 #'
 #' unlink("files", recursive = TRUE)
+#' create_sample_dir(name = "files")
 #' chainable.path <- create_path_chain("files")
 #' print(chainable.path)
 #' unlink("files", recursive = TRUE)
