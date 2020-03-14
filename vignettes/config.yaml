@@ -1,0 +1,10 @@
+kDirs:
+  kRoot: files/
+  kData:
+    kRoot: data/
+    kExample1: kExample1
+    kExample2: kExample2
+    kPersons: kPersons
+  kDocs:
+    kRoot: docs/
+    kSchema: kSchema

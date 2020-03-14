@@ -1,0 +1,146 @@
+---
+title: "Working with config files"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{working_with_config_files}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Assume we are exloring some data set, and during our work, we've created a number 
+of files with their specific structure.
+
+```{r setup}
+library(path.chain)
+library(magrittr)
+
+# Create an example file stucture
+create_sample_dir(".", name = "files")
+
+# Sample structure we've already created looks as follows
+fs::dir_tree("files")
+```
+
+Then, we have two possible ways to represent this structure using `path.chain` package.
+
+## 1. Using `full_path_chain` function, which returns a list of nested directories.
+```{r possible.structures}
+full.path.chain <- full_path_chain("files")
+
+print(full.path.chain)
+
+full.path.chain %>% 
+  yaml::write_yaml("config.yaml")
+```
+
+Configurtion file **config.yaml** will look as follows:
+```{yaml}
+'.': files
+data:
+  '.': files/data
+  example1.RData: files/data/example1.RData
+  example2.RData: files/data/example2.RData
+  persons.csv: files/data/persons.csv
+docs:
+  '.': files/docs
+  schema.txt: files/docs/schema.txt
+```
+
+We can customize keys naming convention using `naming` argument.
+
+```{r custom.naming.function}
+
+naming_fun <- function(x){
+  paste0("k", tools::file_path_sans_ext(stringi::stri_trans_totitle(basename(x))))
+}
+
+full.path.chain.2 <- full_path_chain("files", "kRoot", naming_fun)
+
+full.path.chain.2 %>% 
+  yaml::write_yaml("config.yaml")
+```
+
+```{yaml}
+kRoot: files
+kData:
+  kRoot: files/data
+  kExample1: files/data/example1.RData
+  kExample2: files/data/example2.RData
+  kPersons: files/data/persons.csv
+kDocs:
+  kRoot: files/docs
+  kSchema: files/docs/schema.txt
+```
+
+If dir structure is not a only element in ou config file, we can wrap it with
+some additional `list`.
+
+```{r wrapped}
+list(kDirs = full.path.chain.2) %>% 
+  yaml::write_yaml("config.yaml")
+```
+
+```{yaml}
+kDirs:
+  kRoot: files
+  kData:
+    kRoot: files/data
+    kExample1: files/data/example1.RData
+    kExample2: files/data/example2.RData
+    kPersons: files/data/persons.csv
+  kDocs:
+    kRoot: files/docs
+    kSchema: files/docs/schema.txt
+```
+
+What if we want to keep absolute paths rather than the relative ones?
+
+```{r absolute.full.path}
+full_path_chain(normalizePath("files"), "kRoot", naming_fun) %>% 
+  yaml::write_yaml("config.yaml")
+```
+```{yaml}
+kRoot: /home/username/Desktop/myproject/files
+kData:
+  kRoot: /home/username/Desktop/myproject/files/data
+  kExample1: /home/username/Desktop/myproject/files/data/example1.RData
+  kExample2: /home/username/Desktop/myproject/files/data/example2.RData
+  kPersons: /home/username/Desktop/myproject/files/data/persons.csv
+kDocs:
+  kRoot: /home/username/Desktop/myproject/files/docs
+  kSchema: /home/username/Desktop/myproject/files/docs/schema.txt
+```
+
+## 2. Using `create_path_chain` function, which returns nested `path_chain` objects.
+
+```{r path_chain}
+path.chain <- create_path_chain("files", naming = naming_fun)
+
+print(path.chain$kData$kExample1)
+
+path.chain %>% 
+  as.list(root.name = "kRoot") %>%
+  list(kDirs = .) %>% 
+  yaml::write_yaml("config.yaml")
+```
+
+```{yaml}
+kDirs:
+  kRoot: files/
+  kData:
+    kRoot: data/
+    kExample1: kExample1
+    kExample2: kExample2
+    kPersons: kPersons
+  kDocs:
+    kRoot: docs/
+    kSchema: kSchema
+```
+
