@@ -55,18 +55,46 @@ fs::dir_tree("files")
 #> └── docs
 #>     └── schema.txt
 
-# Loading stucture with 
+# Loading stucture
 file.structure <- create_path_chain("files")
 file.structure$data$example1.RData
 #> [1] "files/data/example1.RData"
 
+# Loading stucture with naming convention
+file.structure <- create_path_chain("files", naming = naming_k)
+file.structure$kData$kExample1
+#> [1] "files/data/example1.RData"
+
 # Saving file structure
 file.structure %>% 
-  as.list() %>% 
-  yaml::write_yaml(file = "config.yml")
+  as.list(root.name = "kRoot") %>%
+  as_config() %>%  # Required by `{config}` package
+  yaml::write_yaml("config.yaml")
 ```
 
 ``` yaml
-data:
-  kRoot: data
+default:
+  kDirs:
+    kRoot: files/
+    kData:
+      kRoot: data/
+      kExample1: kExample1
+      kExample2: kExample2
+      kPersons: kPersons
+    kDocs:
+      kRoot: docs/
+      kSchema: kSchema
+```
+
+``` r
+k.dirs <- config::get("kDirs", "default", "config.yaml") %>% 
+  as_path_chain()
+
+class(k.dirs)
+#> [1] "path_chain"
+
+k.dirs$kData$.
+#> NULL
+k.dirs$kData$kExample1
+#> NULL
 ```

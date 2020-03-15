@@ -16,7 +16,11 @@ path_chain object
 This function returns
 }
 \examples{
-unlink("files", recursive = TRUE)
-chainable.path <- create_path_chain("files")
+create_sample_dir(name = "files", override = TRUE)
 fs::dir_tree("files")
+chainable.path <- create_path_chain("files")
+chainable.path$data$persons.csv
+# With customized naming convention
+chainable.path <- create_path_chain("files", naming = naming_k)
+chainable.path$kData$kPersons
 }

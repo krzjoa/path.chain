@@ -3,8 +3,7 @@
 #' @param path.chain object of `path_chain` class
 #' @return a list of `path_chain` objects
 #' @examples
-#' unlink("files", recursive = TRUE)
-#' path.chain <- create_path_chain("files")
+#' path.chain <- create_path_chain("files", override = TRUE)
 #' path_children(path.chain)
 #' unlink("files", recursive = TRUE)
 #' @export
@@ -21,8 +20,7 @@ path_children <- function(path.chain){
 #' root     <- path_chain("files", list(level1))
 #' print(root)
 #'
-#' unlink("files", recursive = TRUE)
-#' create_sample_dir(name = "files")
+#' create_sample_dir(name = "files", override = TRUE)
 #' chainable.path <- create_path_chain("files")
 #' print(chainable.path)
 #' unlink("files", recursive = TRUE)
@@ -37,13 +35,18 @@ print.path_chain <- function(x, ...){
 #' @title Create sample directory
 #' @description Creates sample nested directory to test and learn path.chain package
 #' @examples
-#' create_sample_dir(name = "files")
+#' create_sample_dir(name = "files", override = TRUE)
 #' list.files("files", all.files = TRUE, recursive = TRUE, include.dirs = TRUE)
+#' fs::dir_tree("files")
 #' @export
-create_sample_dir <- function(root = ".", name = "files"){
-  dir.create(file.path(root, name))
-  dir.create(file.path(root, name, "docs"))
-  dir.create(file.path(root, name, "data"))
+create_sample_dir <- function(root = ".", name = "files", override = FALSE){
+
+  if (override)
+    unlink(root, recursive = TRUE)
+
+  dir.create(file.path(root, name), showWarnings = !override)
+  dir.create(file.path(root, name, "docs"), showWarnings = !override)
+  dir.create(file.path(root, name, "data"), showWarnings = !override)
   file.create(file.path(root, name, "data", "example1.RData"))
   file.create(file.path(root, name, "data", "example2.RData"))
   file.create(file.path(root, name, "data", "persons.csv"))

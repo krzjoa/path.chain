@@ -142,11 +142,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>root.name</th>
-      <td><p>key for root directory; default: 'root.dir'
-unlink("files", recursive = TRUE)
-path.chain &lt;- create_path_chain("files")
-as.list(path.chain)
-unlink("files", recursive = TRUE)</p></td>
+      <td><p>key for root directory; default: 'root.dir'</p></td>
     </tr>
     <tr>
       <th>patch.chain</th>
@@ -155,11 +151,40 @@ unlink("files", recursive = TRUE)</p></td>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"files"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'><a href='create_sample_dir.html'>create_sample_dir</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"files"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>path.chain</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_path_chain.html'>create_path_chain</a></span>(<span class='st'>"files"</span>)
+<span class='fu'>as.list</span>(<span class='no'>path.chain</span>)</div><div class='output co'>#&gt; $root.dir
+#&gt; [1] "files/"
+#&gt; 
+#&gt; $data
+#&gt; $data$root.dir
+#&gt; [1] "data/"
+#&gt; 
+#&gt; $data$example1.RData
+#&gt; [1] "example1.RData"
+#&gt; 
+#&gt; $data$example2.RData
+#&gt; [1] "example2.RData"
+#&gt; 
+#&gt; $data$persons.csv
+#&gt; [1] "persons.csv"
+#&gt; 
+#&gt; 
+#&gt; $docs
+#&gt; $docs$root.dir
+#&gt; [1] "docs/"
+#&gt; 
+#&gt; $docs$schema.txt
+#&gt; [1] "schema.txt"
+#&gt; 
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"files"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

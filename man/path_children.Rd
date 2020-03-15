@@ -16,8 +16,7 @@ a list of `path_chain` objects
 Get children nodes, i.e. all the suddiectories in the given directory
 }
 \examples{
-unlink("files", recursive = TRUE)
-path.chain <- create_path_chain("files")
+path.chain <- create_path_chain("files", override = TRUE)
 path_children(path.chain)
 unlink("files", recursive = TRUE)
 }

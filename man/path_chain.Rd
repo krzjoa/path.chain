@@ -15,7 +15,7 @@ path_chain(node = NULL, children = NULL)
 path_chain object
 }
 \description{
-A 'link' of path_chain object
+Basic package's object: an object representing a link in the chain
 }
 \examples{
 # If we want to create our chain manually, we have start from the leaves

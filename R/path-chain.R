@@ -1,6 +1,6 @@
 #' @name path_chain
 #' @title Create path_chain object - a directory or a file
-#' @description A 'link' of path_chain object
+#' @description Basic package's object: an object representing a link in the chain
 #' @param node Current node name; character
 #' @param children list of children - path_chains
 #' @return path_chain object
@@ -74,9 +74,13 @@ path_chain <- function(node = NULL, children = NULL){
 #' @description This function returns
 #' @return path_chain object
 #' @examples
-#' unlink("files", recursive = TRUE)
-#' chainable.path <- create_path_chain("files")
+#' create_sample_dir(name = "files", override = TRUE)
 #' fs::dir_tree("files")
+#' chainable.path <- create_path_chain("files")
+#' chainable.path$data$persons.csv
+#' # With customized naming convention
+#' chainable.path <- create_path_chain("files", naming = naming_k)
+#' chainable.path$kData$kPersons
 #' @export
 create_path_chain <- function(path, naming = basename){
   if(dir.exists(path)){
@@ -88,6 +92,6 @@ create_path_chain <- function(path, naming = basename){
     children <- setNames(children, naming(file.list))
     path_chain(node = basename(path), children)
   } else {
-    path_chain(node = naming(path))
+    path_chain(node = basename(path))
   }
 }

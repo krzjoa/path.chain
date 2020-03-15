@@ -9,7 +9,7 @@
 The aim of this package is to provide tools,
 which allow us to represent directory structure as
 nested R objects. It can be easily saved as .yaml
-files so that we can later load it and use in pur project.
+files so that we can later load it and use in our project.
 }
 \author{
 Krzysztof Joachimiak

@@ -4,20 +4,38 @@
 \alias{as_path_chain}
 \title{Create chainable path}
 \usage{
-as_path_chain(config.section, root.name = "kRoot")
+as_path_chain(nested.list, root.name = "kRoot")
 }
 \arguments{
-\item{root.name}{Key for root directory}
+\item{nested.list}{`list` object with nested lists/strings inside}
 
-\item{path}{path (character)}
+\item{root.namekKey}{for root directory}
 }
 \value{
 path_chain object
 }
 \description{
-This function returns
+This function always treats first object in the nested list
+as a subdirectory root path
 }
 \examples{
+library(magrittr)
+# Manually created nested list
 nested.list <- list(kRoot = "root", "file1.txt", list("subdir", "file2.csv"))
 chainable.path <- as_path_chain(nested.list)
+class(chainable.path)
+chainable.path$.
+chainable.path$subdir$files2.csv
+# Nested list from config file
+create_sample_dir("files", override = TRUE)
+fs::dir_tree("files")
+create_path_chain("files", naming = naming_fun) \%>\%
+  as.list(root.name = "kRoot") \%>\%
+  as_config("default", "kDirs") \%>\%
+  yaml::write_yaml("config.yaml")
+chainable.path <- config::get("kDirs", "defaul", "config.yaml") \%>\%
+ as_path_chain()
+class(chainable.path)
+chainable.path$.
+chainable.path$kData$kExample1
 }

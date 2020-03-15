@@ -7,9 +7,11 @@
 #' In contrast to `path_chain`, this functon creates just a list with nested list with full paths as a leaves.
 #' @importFrom rlang as_function
 #' @examples
-#' fs::dir_list()
-#' chainable.path <- full_path_chain(".")
+#' create_sample_dir(name = "files", override = TRUE)
+#' fs::dir_tree("files")
+#' chainable.path <- full_path_chain("files")
 #' chainable.path
+#' unlink("files", recursive = TRUE)
 #' @return list of lists and character objects
 #' @export
 full_path_chain <- function(path = ".", root.name = ".", naming = basename){

@@ -134,7 +134,7 @@
     <p>This function returns</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_path_chain</span>(<span class='no'>path</span>)</pre>
+    <pre class="usage"><span class='fu'>create_path_chain</span>(<span class='no'>path</span>, <span class='kw'>naming</span> <span class='kw'>=</span> <span class='no'>basename</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -150,9 +150,16 @@
     <p>path_chain object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"files"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'>create_path_chain</span>(<span class='st'>"files"</span>)
-<span class='kw pkg'>fs</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/fs/man/dir_tree.html'>dir_tree</a></span>(<span class='st'>"files"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: [ENOENT] Failed to search directory 'files': no such file or directory</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='create_sample_dir.html'>create_sample_dir</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"files"</span>, <span class='kw'>override</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='kw pkg'>fs</span><span class='kw ns'>::</span><span class='fu'><a href='http://fs.r-lib.org/reference/dir_tree.html'>dir_tree</a></span>(<span class='st'>"files"</span>)</div><div class='output co'>#&gt; files
+#&gt; ├── data
+#&gt; │   ├── example1.RData
+#&gt; │   ├── example2.RData
+#&gt; │   └── persons.csv
+#&gt; └── docs
+#&gt;     └── schema.txt</div><div class='input'><span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'>create_path_chain</span>(<span class='st'>"files"</span>)
+<span class='no'>chainable.path</span>$<span class='no'>data</span>$<span class='no'>persons.csv</span></div><div class='output co'>#&gt; [1] "files/data/persons.csv"</div><div class='input'><span class='co'># With customized naming convention</span>
+<span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'>create_path_chain</span>(<span class='st'>"files"</span>, <span class='kw'>naming</span> <span class='kw'>=</span> <span class='no'>naming_k</span>)
+<span class='no'>chainable.path</span>$<span class='no'>kData</span>$<span class='no'>kPersons</span></div><div class='output co'>#&gt; [1] "files/data/persons.csv"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

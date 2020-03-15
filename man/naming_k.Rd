@@ -15,10 +15,13 @@ Naming convention, which adds k prefix for each key, capitalizes and removes fil
 \examples{
 naming_k("path/to/myfile.txt")
 # Using with full_path_chain
-unlink("files", recursive = TRUE)
-create_sample_dir(name = "files")
+create_sample_dir(name = "files", override = TRUE)
 full.path.chain <- full_path_chain("files", naming = naming_k)
 full.path.chain
 create_sample_dir(name = "files")
 # Using with path_chain / create_path_chain
+path.chain <- create_path_chain("files", naming = naming_k)
+path.chain \%>\%
+  as.list()
+unlink(root, recursive = TRUE)
 }

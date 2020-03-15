@@ -4,12 +4,13 @@
 \alias{create_sample_dir}
 \title{Create sample directory}
 \usage{
-create_sample_dir(root = ".", name = "files")
+create_sample_dir(root = ".", name = "files", override = FALSE)
 }
 \description{
 Creates sample nested directory to test and learn path.chain package
 }
 \examples{
-create_sample_dir(name = "files")
+create_sample_dir(name = "files", override = TRUE)
 list.files("files", all.files = TRUE, recursive = TRUE, include.dirs = TRUE)
+fs::dir_tree("files")
 }
