@@ -3,7 +3,8 @@
 #' @param path.chain object of `path_chain` class
 #' @return a list of `path_chain` objects
 #' @examples
-#' path.chain <- create_path_chain("files", override = TRUE)
+#' create_sample_dir(name = "files", override = TRUE)
+#' path.chain <- create_path_chain("files")
 #' path_children(path.chain)
 #' unlink("files", recursive = TRUE)
 #' @export

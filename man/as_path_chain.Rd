@@ -27,7 +27,7 @@ class(chainable.path)
 chainable.path$.
 chainable.path$subdir$files2.csv
 # Nested list from config file
-create_sample_dir("files", override = TRUE)
+create_sample_dir(name = "files", override = TRUE)
 fs::dir_tree("files")
 create_path_chain("files", naming = naming_fun) \%>\%
   as.list(root.name = "kRoot") \%>\%
