@@ -1,5 +1,5 @@
 default:
-  dirs:
+  kDirs:
     kRoot: files/
     kData:
       kRoot: data/

@@ -68,7 +68,7 @@ file.structure$kData$kExample1
 # Saving file structure
 file.structure %>% 
   as.list(root.name = "kRoot") %>%
-  as_config() %>%  # Required by `{config}` package
+  as_config(wrap = "kDirs") %>%  # Required by `{config}` package
   yaml::write_yaml("config.yaml")
 ```
 
@@ -94,7 +94,7 @@ class(k.dirs)
 #> [1] "path_chain"
 
 k.dirs$kData$.
-#> NULL
+#> [1] "files//data//"
 k.dirs$kData$kExample1
-#> NULL
+#> [1] "files//data//example1.RData"
 ```
