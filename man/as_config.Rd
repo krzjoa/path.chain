@@ -18,7 +18,7 @@ list compatible with `{config}` package
 }
 \description{
 This function is provided to keep compatibility
-with `{config}` package, which requires existence of \textbf{default} key.
+with `{config}` package, which requires existence of default key.
 Additionally, we can at once wrap our structure with some other keys,
 in order to not to mix directory structur with different keys.
 }
@@ -26,12 +26,12 @@ in order to not to mix directory structur with different keys.
 library(magrittr)
 # Initalizaing sample directory
 create_sample_dir(name = "files", override = TRUE)
-full_path_chain("files", "kRoot", naming_fun) \%>\%
+full_path_chain("files", "kRoot", naming_k) \%>\%
    list(kDirs = .) \%>\%
    list(default = .) \%>\%
    yaml::write_yaml("config.yaml")
 # We can simply use such function
-full_path_chain("files", "kRoot", naming_fun) \%>\%
+full_path_chain("files", "kRoot", naming_k) \%>\%
    as_config("default", "kDirs") \%>\%
    yaml::write_yaml("config.yaml")
 }

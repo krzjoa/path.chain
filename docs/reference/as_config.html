@@ -166,13 +166,14 @@ in order to not to mix directory structur with different keys.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>magrittr</span>)
 <span class='co'># Initalizaing sample directory</span>
-<span class='fu'><a href='create_sample_dir.html'>create_sample_dir</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"files"</span>, <span class='kw'>override</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='full_path_chain.html'>full_path_chain</a></span>(<span class='st'>"files"</span>, <span class='st'>"kRoot"</span>, <span class='no'>naming_fun</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='create_sample_dir.html'>create_sample_dir</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"files"</span>, <span class='kw'>override</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='full_path_chain.html'>full_path_chain</a></span>(<span class='st'>"files"</span>, <span class='st'>"kRoot"</span>, <span class='no'>naming_k</span>) <span class='kw'>%&gt;%</span>
    <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>kDirs</span> <span class='kw'>=</span> <span class='no'>.</span>) <span class='kw'>%&gt;%</span>
    <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>default</span> <span class='kw'>=</span> <span class='no'>.</span>) <span class='kw'>%&gt;%</span>
-   <span class='kw pkg'>yaml</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/yaml/man/write_yaml.html'>write_yaml</a></span>(<span class='st'>"config.yaml"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in is_closure(x): nie znaleziono obiektu 'naming_fun'</span></div><div class='input'><span class='co'># We can simply use such function</span>
-<span class='fu'><a href='full_path_chain.html'>full_path_chain</a></span>(<span class='st'>"files"</span>, <span class='st'>"kRoot"</span>, <span class='no'>naming_fun</span>) <span class='kw'>%&gt;%</span>
+   <span class='kw pkg'>yaml</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/yaml/man/write_yaml.html'>write_yaml</a></span>(<span class='st'>"config.yaml"</span>)
+<span class='co'># We can simply use such function</span>
+<span class='fu'><a href='full_path_chain.html'>full_path_chain</a></span>(<span class='st'>"files"</span>, <span class='st'>"kRoot"</span>, <span class='no'>naming_k</span>) <span class='kw'>%&gt;%</span>
    <span class='fu'>as_config</span>(<span class='st'>"default"</span>, <span class='st'>"kDirs"</span>) <span class='kw'>%&gt;%</span>
-   <span class='kw pkg'>yaml</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/yaml/man/write_yaml.html'>write_yaml</a></span>(<span class='st'>"config.yaml"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in is_closure(x): nie znaleziono obiektu 'naming_fun'</span></div></pre>
+   <span class='kw pkg'>yaml</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/yaml/man/write_yaml.html'>write_yaml</a></span>(<span class='st'>"config.yaml"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

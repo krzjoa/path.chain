@@ -5,12 +5,14 @@
 \alias{as.list.path_chain}
 \title{Convert object of type `path_chain` to list}
 \usage{
-\method{as.list}{path_chain}(path.chain, root.name = "root.dir")
+\method{as.list}{path_chain}(x, ..., root.name = "root.dir")
 }
 \arguments{
-\item{root.name}{key for root directory; default: 'root.dir'}
+\item{x}{a path_chain object}
 
-\item{patch.chain}{a path_chain object}
+\item{...}{elipsis for API consistency, does nothing}
+
+\item{root.name}{key for root directory; default: 'root.dir'}
 }
 \description{
 Convert object of type `path_chain` to list

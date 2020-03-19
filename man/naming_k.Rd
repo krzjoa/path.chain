@@ -13,6 +13,7 @@ naming_k(path)
 Naming convention, which adds k prefix for each key, capitalizes and removes file extension
 }
 \examples{
+library(magrittr)
 naming_k("path/to/myfile.txt")
 # Using with full_path_chain
 create_sample_dir(name = "files", override = TRUE)
@@ -23,5 +24,5 @@ create_sample_dir(name = "files")
 path.chain <- create_path_chain("files", naming = naming_k)
 path.chain \%>\%
   as.list()
-unlink(root, recursive = TRUE)
+unlink("files", recursive = TRUE)
 }

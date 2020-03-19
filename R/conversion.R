@@ -1,7 +1,7 @@
 #' @name as_path_chain
 #' @title Create chainable path
 #' @param nested.list `list` object with nested lists/strings inside
-#' @param root.namekKey for root directory
+#' @param root.name for root directory
 #' @description This function always treats first object in the nested list
 #' as a subdirectory root path
 #' @return path_chain object
@@ -16,7 +16,7 @@
 #' # Nested list from config file
 #' create_sample_dir(name = "files", override = TRUE)
 #' fs::dir_tree("files")
-#' create_path_chain("files", naming = naming_fun) %>%
+#' create_path_chain("files", naming = naming_k) %>%
 #'   as.list(root.name = "kRoot") %>%
 #'   as_config("default", "kDirs") %>%
 #'   yaml::write_yaml("config.yaml")
@@ -38,7 +38,8 @@ as_path_chain <- function(nested.list, root.name = 'kRoot'){
 
 #' @name as.list
 #' @title Convert object of type `path_chain` to list
-#' @param patch.chain a path_chain object
+#' @param x a path_chain object
+#' @param ... elipsis for API consistency, does nothing
 #' @param root.name key for root directory; default: 'root.dir'
 #' @examples
 #' unlink("files", recursive = TRUE)
@@ -47,14 +48,14 @@ as_path_chain <- function(nested.list, root.name = 'kRoot'){
 #' as.list(path.chain)
 #' unlink("files", recursive = TRUE)
 #' @export
-as.list.path_chain <- function(path.chain, root.name = "root.dir"){
-  if (length(path.chain) == 1) {
-    attr(path.chain, 'node')
+as.list.path_chain <- function(x, ..., root.name = "root.dir"){
+  if (length(x) == 1) {
+    attr(x, 'node')
   } else {
     l <- list()
-    l[[root.name]] <- path.chain$.
+    l[[root.name]] <- x$.
     call_as.list.path_chain <- function(x) as.list.path_chain(x, root.name = root.name)
-    c(l, Map(call_as.list.path_chain, path_children(path.chain)))
+    c(l, Map(call_as.list.path_chain, path_children(x)))
   }
 }
 
@@ -65,19 +66,19 @@ as.list.path_chain <- function(path.chain, root.name = "root.dir"){
 #' @param wrap key name to wrap directory structure
 #' @return list compatible with `{config}` package
 #' @description This function is provided to keep compatibility
-#' with `{config}` package, which requires existence of \textbf{default} key.
+#' with `{config}` package, which requires existence of default key.
 #' Additionally, we can at once wrap our structure with some other keys,
 #' in order to not to mix directory structur with different keys.
 #' @examples
 #' library(magrittr)
 #' # Initalizaing sample directory
 #' create_sample_dir(name = "files", override = TRUE)
-#' full_path_chain("files", "kRoot", naming_fun) %>%
+#' full_path_chain("files", "kRoot", naming_k) %>%
 #'    list(kDirs = .) %>%
 #'    list(default = .) %>%
 #'    yaml::write_yaml("config.yaml")
 #' # We can simply use such function
-#' full_path_chain("files", "kRoot", naming_fun) %>%
+#' full_path_chain("files", "kRoot", naming_k) %>%
 #'    as_config("default", "kDirs") %>%
 #'    yaml::write_yaml("config.yaml")
 #' @export

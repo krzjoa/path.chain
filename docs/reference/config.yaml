@@ -1,2 +1,11 @@
 default:
-  kDirs: files
+  kDirs:
+    kRoot: files/
+    kData:
+      kRoot: data/
+      kExample1: example1.RData
+      kExample2: example2.RData
+      kPersons: persons.csv
+    kDocs:
+      kRoot: docs/
+      kSchema: schema.txt

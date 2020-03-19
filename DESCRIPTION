@@ -21,5 +21,12 @@ RoxygenNote: 6.1.1
 Suggests: 
     testthat (>= 2.1.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    config,
+    yaml,
+    fs,
+    magrittr
 VignetteBuilder: knitr
+Imports: 
+    rlang,
+    stringi

@@ -135,18 +135,22 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for path_chain</span>
-<span class='fu'>as.list</span>(<span class='no'>path.chain</span>, <span class='kw'>root.name</span> <span class='kw'>=</span> <span class='st'>"root.dir"</span>)</pre>
+<span class='fu'>as.list</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>root.name</span> <span class='kw'>=</span> <span class='st'>"root.dir"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>root.name</th>
-      <td><p>key for root directory; default: 'root.dir'</p></td>
+      <th>x</th>
+      <td><p>a path_chain object</p></td>
     </tr>
     <tr>
-      <th>patch.chain</th>
-      <td><p>a path_chain object</p></td>
+      <th>...</th>
+      <td><p>elipsis for API consistency, does nothing</p></td>
+    </tr>
+    <tr>
+      <th>root.name</th>
+      <td><p>key for root directory; default: 'root.dir'</p></td>
     </tr>
     </table>
 

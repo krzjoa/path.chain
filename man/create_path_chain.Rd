@@ -7,7 +7,9 @@
 create_path_chain(path, naming = basename)
 }
 \arguments{
-\item{path}{Path}
+\item{path}{root of the directory structure}
+
+\item{naming}{function, which defines naming convention}
 }
 \value{
 path_chain object

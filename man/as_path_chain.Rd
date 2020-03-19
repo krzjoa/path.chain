@@ -9,7 +9,7 @@ as_path_chain(nested.list, root.name = "kRoot")
 \arguments{
 \item{nested.list}{`list` object with nested lists/strings inside}
 
-\item{root.namekKey}{for root directory}
+\item{root.name}{for root directory}
 }
 \value{
 path_chain object
@@ -29,7 +29,7 @@ chainable.path$subdir$files2.csv
 # Nested list from config file
 create_sample_dir(name = "files", override = TRUE)
 fs::dir_tree("files")
-create_path_chain("files", naming = naming_fun) \%>\%
+create_path_chain("files", naming = naming_k) \%>\%
   as.list(root.name = "kRoot") \%>\%
   as_config("default", "kDirs") \%>\%
   yaml::write_yaml("config.yaml")

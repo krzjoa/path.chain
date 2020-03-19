@@ -4,6 +4,7 @@
 #' @param node Current node name; character
 #' @param children list of children - path_chains
 #' @return path_chain object
+#' @importFrom stats setNames
 #' @examples
 #' # If we want to create our chain manually, we have start from the leaves
 #' level2.b <- path_chain("fileA.RData")
@@ -70,9 +71,11 @@ path_chain <- function(node = NULL, children = NULL){
 
 #' @name create_path_chain
 #' @title Get directory structure and create path_chain object
-#' @param path Path
+#' @param path root of the directory structure
+#' @param naming function, which defines naming convention
 #' @description This function returns
 #' @return path_chain object
+#' @importFrom stats setNames
 #' @examples
 #' create_sample_dir(name = "files", override = TRUE)
 #' fs::dir_tree("files")

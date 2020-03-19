@@ -126,7 +126,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create sample directory</h1>
-    <small class="dont-index">Source: <a href='https://github.com/krzjoa/path.chain/blob/master/R/aux.R'><code>R/aux.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/krzjoa/path.chain/blob/master/R/auxilliaries.R'><code>R/auxilliaries.R</code></a></small>
     <div class="hidden name"><code>create_sample_dir.Rd</code></div>
     </div>
 
@@ -136,11 +136,27 @@
 
     <pre class="usage"><span class='fu'>create_sample_dir</span>(<span class='kw'>root</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"files"</span>, <span class='kw'>override</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>root</th>
+      <td><p>root directory, where the new sample folder will be created</p></td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td><p>name for the new sample folder</p></td>
+    </tr>
+    <tr>
+      <th>override</th>
+      <td><p>boolean: override folder if it already exists</p></td>
+    </tr>
+    </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>create_sample_dir</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"files"</span>, <span class='kw'>override</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='st'>"files"</span>, <span class='kw'>all.files</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>include.dirs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "data"                "data/example1.RData" "data/example2.RData"
-#&gt; [4] "data/persons.csv"    "docs"                "docs/schema.txt"    </div><div class='input'><span class='kw pkg'>fs</span><span class='kw ns'>::</span><span class='fu'><a href='http://fs.r-lib.org/reference/dir_tree.html'>dir_tree</a></span>(<span class='st'>"files"</span>)</div><div class='output co'>#&gt; files
+#&gt; [4] "data/persons.csv"    "docs"                "docs/schema.txt"    </div><div class='input'><span class='kw pkg'>fs</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/fs/man/dir_tree.html'>dir_tree</a></span>(<span class='st'>"files"</span>)</div><div class='output co'>#&gt; files
 #&gt; ├── data
 #&gt; │   ├── example1.RData
 #&gt; │   ├── example2.RData
@@ -151,6 +167,7 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

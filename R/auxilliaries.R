@@ -14,6 +14,8 @@ path_children <- function(path.chain){
 
 #' @name print
 #' @title Print path_chain object
+#' @param x `path_chain` object
+#' @param ... elipsis for API consistency, does nothing
 #' @examples
 #' level2.b <- path_chain("fileA.RData")
 #' level2.a <- path_chain("fileB.RData")
@@ -34,6 +36,9 @@ print.path_chain <- function(x, ...){
 
 #' @name create_sample_dir
 #' @title Create sample directory
+#' @param root root directory, where the new sample folder will be created
+#' @param name name for the new sample folder
+#' @param override boolean: override folder if it already exists
 #' @description Creates sample nested directory to test and learn path.chain package
 #' @examples
 #' create_sample_dir(name = "files", override = TRUE)
