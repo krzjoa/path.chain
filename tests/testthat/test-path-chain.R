@@ -19,6 +19,6 @@ test_that("Check dot notation", {
   unlink("files", recursive = TRUE)
   create_sample_dir(name = "files")
   path.chain <- create_path_chain("files")
-  expect_equal(path.chain$data$., "files/data/")
+  expect_equal(sub("/$", "", path.chain$data$.), "files/data")
   unlink("files", recursive = TRUE)
 })
