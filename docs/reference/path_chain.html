@@ -100,6 +100,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/path_validation.html">Path validation</a>
+    </li>
+    <li>
       <a href="../articles/working_with_config_files.html">Working with config files</a>
     </li>
   </ul>
@@ -160,8 +163,8 @@
 <span class='no'>level1</span>   <span class='kw'>&lt;-</span> <span class='fu'>path_chain</span>(<span class='st'>"data"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>level2.a</span> <span class='kw'>=</span> <span class='no'>level2.a</span> , <span class='kw'>level2.b</span> <span class='kw'>=</span> <span class='no'>level2.b</span>))
 <span class='no'>root</span>     <span class='kw'>&lt;-</span> <span class='fu'>path_chain</span>(<span class='st'>"files"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>level1</span>))
 <span class='co'># Print root path</span>
-<span class='no'>root</span>$<span class='no'>.</span></div><div class='output co'>#&gt; [1] "files/"</div><div class='input'><span class='co'># Print file path using chaining</span>
-<span class='no'>root</span>$<span class='no'>data</span>$<span class='no'>level2.a</span></div><div class='output co'>#&gt; [1] "files/data/fileB.RData"</div></pre>
+<span class='no'>root</span>$<span class='no'>.</span></div><div class='output co'>#&gt; [1] "files/"</div><div class='output co'>#&gt; [1] "files/"</div><div class='input'><span class='co'># Print file path using chaining</span>
+<span class='no'>root</span>$<span class='no'>data</span>$<span class='no'>level2.a</span></div><div class='output co'>#&gt; [1] "files/data/fileB.RData"</div><div class='output co'>#&gt; [1] "files/data/fileB.RData"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

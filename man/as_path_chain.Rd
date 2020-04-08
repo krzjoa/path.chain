@@ -27,13 +27,14 @@ class(chainable.path)
 chainable.path$.
 chainable.path$subdir$files2.csv
 # Nested list from config file
-create_sample_dir(name = "files", override = TRUE)
-fs::dir_tree("files")
-create_path_chain("files", naming = naming_k) \%>\%
+tmp <- create_temp_dir("files")
+create_sample_dir(tmp, override = TRUE)
+fs::dir_tree(tmp)
+create_path_chain(tmp, naming = naming_k) \%>\%
   as.list(root.name = "kRoot") \%>\%
   as_config("default", "kDirs") \%>\%
-  yaml::write_yaml("config.yaml")
-chainable.path <- config::get("kDirs", "defaul", "config.yaml") \%>\%
+  yaml::write_yaml(file.path(tempdir(), "config.yaml"))
+chainable.path <- config::get("kDirs", "defaul", create_temp_dir("config.yaml")) \%>\%
  as_path_chain()
 class(chainable.path)
 chainable.path$.

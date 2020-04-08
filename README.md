@@ -42,12 +42,13 @@ library(magrittr)
 library(path.chain)
 
 # Create an example file stucture
-create_sample_dir(".", name = "files")
+tmp <- create_temp_dir("files")
+create_sample_dir(tmp)
 #> [1] TRUE
 
 # Sample structure we've already created looks as follows
-fs::dir_tree("files")
-#> files
+fs::dir_tree(tmp)
+#> /tmp/Rtmp0UP4HQ/files
 #> ├── data
 #> │   ├── example1.RData
 #> │   ├── example2.RData
@@ -56,12 +57,12 @@ fs::dir_tree("files")
 #>     └── schema.txt
 
 # Loading stucture
-file.structure <- create_path_chain("files")
+file.structure <- create_path_chain(tmp)
 file.structure$data$example1.RData
 #> [1] "files/data/example1.RData"
 
 # Loading stucture with naming convention
-file.structure <- create_path_chain("files", naming = naming_k)
+file.structure <- create_path_chain(tmp, naming = naming_k)
 file.structure$kData$kExample1
 #> [1] "files/data/example1.RData"
 
@@ -69,7 +70,7 @@ file.structure$kData$kExample1
 file.structure %>% 
   as.list(root.name = "kRoot") %>%
   as_config(wrap = "kDirs") %>%  # Required by `{config}` package
-  yaml::write_yaml("config.yaml")
+  yaml::write_yaml(create_temp_dir("config.yaml"))
 ```
 
 ``` yaml
@@ -87,14 +88,33 @@ default:
 ```
 
 ``` r
-k.dirs <- config::get("kDirs", "default", "config.yaml") %>% 
+k.dirs <- config::get("kDirs", "default", create_temp_dir("config.yaml")) %>% 
   as_path_chain()
 
 class(k.dirs)
 #> [1] "path_chain"
 
 k.dirs$kData$.
-#> [1] "files//data//"
+#> [1] "files/data/"
 k.dirs$kData$kExample1
-#> [1] "files//data//example1.RData"
+#> [1] "files/data/example1.RData"
+```
+
+``` r
+on_path_not_exists(~ print("Path {.x} not exists"))
+is_path_valid <- function(x) if (!grepl("\\.fst", x)) print("Invalid file")
+on_validate_path(is_path_valid)
+
+level2.b <- path_chain("fileA.RData")
+level2.a <- path_chain("fileB.fst")
+level1   <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
+root     <- path_chain("files", list(level1))
+
+root$data$level2.a
+#> [1] "Path {.x} not exists"
+#> [1] "files/data/fileB.fst"
+root$data$level2.b
+#> [1] "Path {.x} not exists"
+#> [1] "Invalid file"
+#> [1] "files/data/fileA.RData"
 ```

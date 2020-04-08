@@ -20,6 +20,10 @@ reference:
 - title: Auxilliary functions
   contents:
   - path_children
+  - file_path
   - naming_k
   - create_sample_dir
+  - create_temp_dir
   - print.path_chain
+  - on_path_not_exists
+  - on_validate_path

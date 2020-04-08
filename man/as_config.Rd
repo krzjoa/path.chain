@@ -25,13 +25,14 @@ in order to not to mix directory structur with different keys.
 \examples{
 library(magrittr)
 # Initalizaing sample directory
-create_sample_dir(name = "files", override = TRUE)
-full_path_chain("files", "kRoot", naming_k) \%>\%
+tmp <- create_temp_dir("files")
+create_sample_dir(tmp, override = TRUE)
+full_path_chain(tmp, "kRoot", naming_k) \%>\%
    list(kDirs = .) \%>\%
    list(default = .) \%>\%
-   yaml::write_yaml("config.yaml")
+   yaml::write_yaml(create_temp_dir("config.yaml"))
 # We can simply use such function
-full_path_chain("files", "kRoot", naming_k) \%>\%
+full_path_chain(tmp, "kRoot", naming_k) \%>\%
    as_config("default", "kDirs") \%>\%
-   yaml::write_yaml("config.yaml")
+   yaml::write_yaml(create_temp_dir("config.yaml"))
 }

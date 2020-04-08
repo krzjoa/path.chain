@@ -4,7 +4,7 @@
 \name{path.chain-package}
 \alias{path.chain-package}
 \alias{path.chain}
-\title{Package path.chain}
+\title{path.chain: Concise Structure for Chainable Paths}
 \description{
 The aim of this package is to provide tools,
 which allow us to represent directory structure as

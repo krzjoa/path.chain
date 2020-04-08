@@ -60,10 +60,20 @@ path_chain <- function(node = NULL, children = NULL){
       obj <- x[[1]]
       last.node <- attr(obj[[y]], 'node')
       last.node <- if(is.null(last.node)) "" else last.node
-      list(obj[[y]], file.path(x[[2]], last.node))
+      list(obj[[y]], file_path(x[[2]], last.node))
     }
+    final.path <- Reduce(fun, splitted.path, list(root.object, attr(root.object, 'node')))[[2]]
 
-    Reduce(fun, splitted.path, list(root.object, attr(root.object, 'node')))[[2]]
+    # Check, if path exists
+    on.path.not.exists <- on_path_not_exists()
+    if (!is.null(on.path.not.exists) & !file.exists(final.path))
+      on.path.not.exists(final.path)
+
+    # Call path validation
+    on.validate.path<- on_validate_path()
+    if (!is.null(on.validate.path )) on.validate.path(final.path)
+
+    return(final.path)
   } else {
     node[[child]]
   }
@@ -77,12 +87,13 @@ path_chain <- function(node = NULL, children = NULL){
 #' @return path_chain object
 #' @importFrom stats setNames
 #' @examples
-#' create_sample_dir(name = "files", override = TRUE)
-#' fs::dir_tree("files")
-#' chainable.path <- create_path_chain("files")
+#' tmp <- create_temp_dir("files")
+#' create_sample_dir(tmp, override = TRUE)
+#' fs::dir_tree(tmp)
+#' chainable.path <- create_path_chain(tmp)
 #' chainable.path$data$persons.csv
 #' # With customized naming convention
-#' chainable.path <- create_path_chain("files", naming = naming_k)
+#' chainable.path <- create_path_chain(tmp, naming = naming_k)
 #' chainable.path$kData$kPersons
 #' @export
 create_path_chain <- function(path, naming = basename){

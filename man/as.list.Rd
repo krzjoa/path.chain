@@ -18,9 +18,8 @@
 Convert object of type `path_chain` to list
 }
 \examples{
-unlink("files", recursive = TRUE)
-create_sample_dir(name = "files")
-path.chain <- create_path_chain("files")
+tmp <- create_temp_dir("files")
+create_sample_dir(tmp)
+path.chain <- create_path_chain(tmp)
 as.list(path.chain)
-unlink("files", recursive = TRUE)
 }

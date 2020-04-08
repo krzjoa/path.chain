@@ -4,12 +4,10 @@
 \alias{create_sample_dir}
 \title{Create sample directory}
 \usage{
-create_sample_dir(root = ".", name = "files", override = FALSE)
+create_sample_dir(path = "files", override = FALSE)
 }
 \arguments{
-\item{root}{root directory, where the new sample folder will be created}
-
-\item{name}{name for the new sample folder}
+\item{path}{path for the new sample folder}
 
 \item{override}{boolean: override folder if it already exists}
 }
@@ -17,7 +15,8 @@ create_sample_dir(root = ".", name = "files", override = FALSE)
 Creates sample nested directory to test and learn path.chain package
 }
 \examples{
-create_sample_dir(name = "files", override = TRUE)
-list.files("files", all.files = TRUE, recursive = TRUE, include.dirs = TRUE)
-fs::dir_tree("files")
+tmp <- create_temp_dir("files")
+create_sample_dir(tmp, override = TRUE)
+list.files(tmp, all.files = TRUE, recursive = TRUE, include.dirs = TRUE)
+fs::dir_tree(tmp)
 }

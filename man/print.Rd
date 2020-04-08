@@ -22,8 +22,8 @@ level1   <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
 root     <- path_chain("files", list(level1))
 print(root)
 
-create_sample_dir(name = "files", override = TRUE)
-chainable.path <- create_path_chain("files")
+tmp <- create_temp_dir("files")
+create_sample_dir(tmp, override = TRUE)
+chainable.path <- create_path_chain(tmp)
 print(chainable.path)
-unlink("files", recursive = TRUE)
 }

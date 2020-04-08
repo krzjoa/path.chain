@@ -22,22 +22,24 @@ library(path.chain)
 library(magrittr)
 
 # Create an example file stucture
-create_sample_dir(".", name = "files", override = TRUE)
+tmp <- create_temp_dir("files")
+create_sample_dir(tmp, override = TRUE)
 
 # Sample structure we've already created looks as follows
-fs::dir_tree("files")
+fs::dir_tree(tmp)
 ```
 
 Then, we have two possible ways to represent this structure using `path.chain` package.
 
 ## 1. Using `full_path_chain` function, which returns a list of nested directories.
 ```{r possible.structures}
-full.path.chain <- full_path_chain("files")
+tmp <- create_temp_dir("files")
+full.path.chain <- full_path_chain(tmp)
 
 print(full.path.chain)
 
 full.path.chain %>% 
-  yaml::write_yaml("config.yaml")
+  yaml::write_yaml(create_temp_dir("config.yaml"))
 ```
 
 Configurtion file **config.yaml** will look as follows:
@@ -61,10 +63,10 @@ naming_fun <- function(x){
   paste0("k", tools::file_path_sans_ext(stringi::stri_trans_totitle(basename(x))))
 }
 
-full.path.chain.2 <- full_path_chain("files", "kRoot", naming_fun)
+full.path.chain.2 <- full_path_chain(create_temp_dir("files"), "kRoot", naming_fun)
 
 full.path.chain.2 %>% 
-  yaml::write_yaml("config.yaml")
+  yaml::write_yaml(create_temp_dir("config.yaml"))
 ```
 
 ```{yaml}
@@ -85,7 +87,7 @@ some additional `list`.
 ```{r wrapped}
 list(kDirs = full.path.chain.2) %>% 
   list(default = .) %>% 
-  yaml::write_yaml("config.yaml")
+  yaml::write_yaml(create_temp_dir("config.yaml"))
 ```
 
 ```{yaml}
@@ -105,7 +107,7 @@ default:
 Then, we can load such config file using `{config}` package:
 
 ```{r loading.full.path.config}
-k.dirs <- config::get("kDirs", config = "default", file = "config.yaml")
+k.dirs <- config::get("kDirs", config = "default", file = create_temp_dir("config.yaml"))
 k.dirs$kDocs$kRoot
 k.dirs$kData$kExample1
 ```
@@ -113,9 +115,9 @@ k.dirs$kData$kExample1
 What if we want to keep absolute paths rather than the relative ones?
 
 ```{r absolute.full.path}
-full_path_chain(normalizePath("files"), "kRoot", naming_fun) %>% 
+full_path_chain(normalizePath(create_temp_dir("files")), "kRoot", naming_fun) %>% 
   as_config("default", "kDirs") %>% 
-  yaml::write_yaml("config.yaml")
+  yaml::write_yaml(create_temp_dir("config.yaml"))
 ```
 Wrapping with **default** key is required by `config` package.
 
@@ -138,7 +140,7 @@ default:
 ## 2. Using `create_path_chain` function, which returns nested `path_chain` objects.
 
 ```{r path_chain}
-path.chain <- create_path_chain("files", naming = naming_fun)
+path.chain <- create_path_chain(create_temp_dir("files"), naming = naming_fun)
 
 class(path.chain)
 
@@ -147,7 +149,7 @@ print(path.chain$kData$kExample1)
 path.chain %>% 
   as.list(root.name = "kRoot") %>%
   as_config("default", "kDirs") %>% 
-  yaml::write_yaml("config.yaml")
+  yaml::write_yaml(create_temp_dir("config.yaml"))
 ```
 
 ```{yaml}
@@ -167,11 +169,12 @@ As you can see, such structur of the config file seems to be more legible than t
 `full_path_chain` function. The config file shown above can be easily consumed using `config` package and `as_path_chain` function.
 
 ```{r as_path_chain}
-k.dirs <- config::get("kDirs", "default", "config.yaml") %>% 
+k.dirs <- config::get("kDirs", "default", create_temp_dir("config.yaml")) %>% 
   as_path_chain()
 
 class(k.dirs)
 
 k.dirs$kData$.
 k.dirs$kData$kExample1
+
 ```

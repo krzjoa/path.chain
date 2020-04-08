@@ -1,6 +1,6 @@
 Package: path.chain
 Type: Package
-Title: Concise Structure For Chainable Paths
+Title: Concise Structure for Chainable Paths
 Version: 0.1.0
 Authors@R: 
     person(given   = "Krzysztof",
@@ -8,10 +8,10 @@ Authors@R:
            role    = c("aut", "cre"),
            email   = "joachimiak.krzysztof@gmail.com",
            comment = c(ORCID = "0000-0003-4780-7947"))
-Description: This package provides path_chain class and functions, which facilitates loading and saving 
+Description: Provides path_chain class and functions, which facilitates loading and saving 
              directory structure in YAML configuration files via 'config' package. 
              The file structure you created during exploration can be transformed 
-             into legible secion in the config file, and then easily loaded for further usage.
+             into legible section in the config file, and then easily loaded for further usage.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -29,4 +29,5 @@ Suggests:
 VignetteBuilder: knitr
 Imports: 
     rlang,
-    stringi
+    stringi,
+    logger

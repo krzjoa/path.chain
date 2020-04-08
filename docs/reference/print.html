@@ -100,6 +100,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/path_validation.html">Path validation</a>
+    </li>
+    <li>
       <a href="../articles/working_with_config_files.html">Working with config files</a>
     </li>
   </ul>
@@ -159,10 +162,11 @@
 <span class='fu'>print</span>(<span class='no'>root</span>)</div><div class='output co'>#&gt; path_chain 
 #&gt;  root: files 
 #&gt;  childen: 2</div><div class='input'>
-<span class='fu'><a href='create_sample_dir.html'>create_sample_dir</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"files"</span>, <span class='kw'>override</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_path_chain.html'>create_path_chain</a></span>(<span class='st'>"files"</span>)
+<span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_temp_dir.html'>create_temp_dir</a></span>(<span class='st'>"files"</span>)
+<span class='fu'><a href='create_sample_dir.html'>create_sample_dir</a></span>(<span class='no'>tmp</span>, <span class='kw'>override</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_path_chain.html'>create_path_chain</a></span>(<span class='no'>tmp</span>)
 <span class='fu'>print</span>(<span class='no'>chainable.path</span>)</div><div class='output co'>#&gt; path_chain 
 #&gt;  root: files 
-#&gt;  childen: 3</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"files"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
+#&gt;  childen: 3</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -16,13 +16,14 @@ Naming convention, which adds k prefix for each key, capitalizes and removes fil
 library(magrittr)
 naming_k("path/to/myfile.txt")
 # Using with full_path_chain
-create_sample_dir(name = "files", override = TRUE)
-full.path.chain <- full_path_chain("files", naming = naming_k)
+tmp <- create_temp_dir("files")
+create_sample_dir(tmp, override = TRUE)
+full.path.chain <- full_path_chain(tmp, naming = naming_k)
 full.path.chain
-create_sample_dir(name = "files")
+tmp <- create_temp_dir("files")
+create_sample_dir(tmp)
 # Using with path_chain / create_path_chain
-path.chain <- create_path_chain("files", naming = naming_k)
+path.chain <- create_path_chain(tmp, naming = naming_k)
 path.chain \%>\%
   as.list()
-unlink("files", recursive = TRUE)
 }

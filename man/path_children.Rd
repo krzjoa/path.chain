@@ -16,8 +16,8 @@ a list of `path_chain` objects
 Get children nodes, i.e. all the suddiectories in the given directory
 }
 \examples{
-create_sample_dir(name = "files", override = TRUE)
-path.chain <- create_path_chain("files")
+tmp <- create_temp_dir("files")
+create_sample_dir(tmp, override = TRUE)
+path.chain <- create_path_chain(tmp)
 path_children(path.chain)
-unlink("files", recursive = TRUE)
 }

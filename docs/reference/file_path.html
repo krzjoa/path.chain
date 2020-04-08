@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create chainable path — as_path_chain • path.chain</title>
+<title>Construct path to file without doubled separators — file_path • path.chain</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,9 +42,8 @@
 
 
 
-<meta property="og:title" content="Create chainable path — as_path_chain" />
-<meta property="og:description" content="This function always treats first object in the nested list
-as a subdirectory root path" />
+<meta property="og:title" content="Construct path to file without doubled separators — file_path" />
+<meta property="og:description" content="Construct path to file without doubled separators" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -129,55 +128,36 @@ as a subdirectory root path" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create chainable path</h1>
-    <small class="dont-index">Source: <a href='https://github.com/krzjoa/path.chain/blob/master/R/conversion.R'><code>R/conversion.R</code></a></small>
-    <div class="hidden name"><code>as_path_chain.Rd</code></div>
+    <h1>Construct path to file without doubled separators</h1>
+    <small class="dont-index">Source: <a href='https://github.com/krzjoa/path.chain/blob/master/R/auxilliaries.R'><code>R/auxilliaries.R</code></a></small>
+    <div class="hidden name"><code>file_path.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function always treats first object in the nested list
-as a subdirectory root path</p>
+    <p>Construct path to file without doubled separators</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as_path_chain</span>(<span class='no'>nested.list</span>, <span class='kw'>root.name</span> <span class='kw'>=</span> <span class='st'>"kRoot"</span>)</pre>
+    <pre class="usage"><span class='fu'>file_path</span>(<span class='no'>...</span>, <span class='kw'>fsep</span> <span class='kw'>=</span> <span class='no'>.Platform</span>$<span class='no'>file.sep</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>nested.list</th>
-      <td><p>`list` object with nested lists/strings inside</p></td>
+      <th>...</th>
+      <td><p>character vectors</p></td>
     </tr>
     <tr>
-      <th>root.name</th>
-      <td><p>for root directory</p></td>
+      <th>fsep</th>
+      <td><p>the path separator to use</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>path_chain object</p>
+    <p>character file path</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>magrittr</span>)
-<span class='co'># Manually created nested list</span>
-<span class='no'>nested.list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>kRoot</span> <span class='kw'>=</span> <span class='st'>"root"</span>, <span class='st'>"file1.txt"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"subdir"</span>, <span class='st'>"file2.csv"</span>))
-<span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'>as_path_chain</span>(<span class='no'>nested.list</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>chainable.path</span>)</div><div class='output co'>#&gt; [1] "path_chain"</div><div class='input'><span class='no'>chainable.path</span>$<span class='no'>.</span></div><div class='output co'>#&gt; [1] "root/"</div><div class='input'><span class='no'>chainable.path</span>$<span class='no'>subdir</span>$<span class='no'>files2.csv</span></div><div class='output co'>#&gt; NULL</div><div class='input'><span class='co'># Nested list from config file</span>
-<span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_temp_dir.html'>create_temp_dir</a></span>(<span class='st'>"files"</span>)
-<span class='fu'><a href='create_sample_dir.html'>create_sample_dir</a></span>(<span class='no'>tmp</span>, <span class='kw'>override</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='kw pkg'>fs</span><span class='kw ns'>::</span><span class='fu'><a href='http://fs.r-lib.org/reference/dir_tree.html'>dir_tree</a></span>(<span class='no'>tmp</span>)</div><div class='output co'>#&gt; /tmp/RtmpuOJcqB/files
-#&gt; ├── data
-#&gt; │   ├── example1.RData
-#&gt; │   ├── example2.RData
-#&gt; │   └── persons.csv
-#&gt; └── docs
-#&gt;     └── schema.txt</div><div class='input'><span class='fu'><a href='create_path_chain.html'>create_path_chain</a></span>(<span class='no'>tmp</span>, <span class='kw'>naming</span> <span class='kw'>=</span> <span class='no'>naming_k</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='as.list.html'>as.list</a></span>(<span class='kw'>root.name</span> <span class='kw'>=</span> <span class='st'>"kRoot"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='as_config.html'>as_config</a></span>(<span class='st'>"default"</span>, <span class='st'>"kDirs"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>yaml</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/yaml/man/write_yaml.html'>write_yaml</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"config.yaml"</span>))
-<span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>config</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/config/man/get.html'>get</a></span>(<span class='st'>"kDirs"</span>, <span class='st'>"defaul"</span>, <span class='fu'><a href='create_temp_dir.html'>create_temp_dir</a></span>(<span class='st'>"config.yaml"</span>)) <span class='kw'>%&gt;%</span>
- <span class='fu'>as_path_chain</span>()
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>chainable.path</span>)</div><div class='output co'>#&gt; [1] "path_chain"</div><div class='input'><span class='no'>chainable.path</span>$<span class='no'>.</span></div><div class='output co'>#&gt; [1] "files/"</div><div class='input'><span class='no'>chainable.path</span>$<span class='no'>kData</span>$<span class='no'>kExample1</span></div><div class='output co'>#&gt; [1] "files/data/example1.RData"</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"files/"</span>, <span class='st'>"data/"</span>, <span class='st'>"cars.RData"</span>)</div><div class='output co'>#&gt; [1] "files//data//cars.RData"</div><div class='input'><span class='fu'>file_path</span>(<span class='st'>"files/"</span>, <span class='st'>"data/"</span>, <span class='st'>"cars.RData"</span>)</div><div class='output co'>#&gt; [1] "files/data/cars.RData"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

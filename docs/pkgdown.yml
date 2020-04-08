@@ -2,5 +2,6 @@ pandoc: 2.3.1
 pkgdown: 1.4.0
 pkgdown_sha: ~
 articles:
+  path_validation: path_validation.html
   working_with_config_files: working_with_config_files.html
 

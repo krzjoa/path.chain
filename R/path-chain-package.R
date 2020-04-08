@@ -1,4 +1,4 @@
-#' Package path.chain
+#' path.chain: Concise Structure for Chainable Paths
 #'
 #' The aim of this package is to provide tools,
 #' which allow us to represent directory structure as

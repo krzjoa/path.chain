@@ -14,13 +14,14 @@
 #' chainable.path$.
 #' chainable.path$subdir$files2.csv
 #' # Nested list from config file
-#' create_sample_dir(name = "files", override = TRUE)
-#' fs::dir_tree("files")
-#' create_path_chain("files", naming = naming_k) %>%
+#' tmp <- create_temp_dir("files")
+#' create_sample_dir(tmp, override = TRUE)
+#' fs::dir_tree(tmp)
+#' create_path_chain(tmp, naming = naming_k) %>%
 #'   as.list(root.name = "kRoot") %>%
 #'   as_config("default", "kDirs") %>%
-#'   yaml::write_yaml("config.yaml")
-#' chainable.path <- config::get("kDirs", "defaul", "config.yaml") %>%
+#'   yaml::write_yaml(file.path(tempdir(), "config.yaml"))
+#' chainable.path <- config::get("kDirs", "defaul", create_temp_dir("config.yaml")) %>%
 #'  as_path_chain()
 #' class(chainable.path)
 #' chainable.path$.
@@ -42,11 +43,10 @@ as_path_chain <- function(nested.list, root.name = 'kRoot'){
 #' @param ... elipsis for API consistency, does nothing
 #' @param root.name key for root directory; default: 'root.dir'
 #' @examples
-#' unlink("files", recursive = TRUE)
-#' create_sample_dir(name = "files")
-#' path.chain <- create_path_chain("files")
+#' tmp <- create_temp_dir("files")
+#' create_sample_dir(tmp)
+#' path.chain <- create_path_chain(tmp)
 #' as.list(path.chain)
-#' unlink("files", recursive = TRUE)
 #' @export
 as.list.path_chain <- function(x, ..., root.name = "root.dir"){
   if (length(x) == 1) {
@@ -72,15 +72,16 @@ as.list.path_chain <- function(x, ..., root.name = "root.dir"){
 #' @examples
 #' library(magrittr)
 #' # Initalizaing sample directory
-#' create_sample_dir(name = "files", override = TRUE)
-#' full_path_chain("files", "kRoot", naming_k) %>%
+#' tmp <- create_temp_dir("files")
+#' create_sample_dir(tmp, override = TRUE)
+#' full_path_chain(tmp, "kRoot", naming_k) %>%
 #'    list(kDirs = .) %>%
 #'    list(default = .) %>%
-#'    yaml::write_yaml("config.yaml")
+#'    yaml::write_yaml(create_temp_dir("config.yaml"))
 #' # We can simply use such function
-#' full_path_chain("files", "kRoot", naming_k) %>%
+#' full_path_chain(tmp, "kRoot", naming_k) %>%
 #'    as_config("default", "kDirs") %>%
-#'    yaml::write_yaml("config.yaml")
+#'    yaml::write_yaml(create_temp_dir("config.yaml"))
 #' @export
 as_config <- function(x, config = "default", wrap = "dirs") {
 

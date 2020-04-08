@@ -1,0 +1,51 @@
+---
+title: "Path validation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Path validation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+We can easily set global path validation using `on_path_not_exists` and `on_validate_path` functions.
+
+## path.chain + logger: handling errors
+```{r setup}
+library(path.chain)
+library(logger)
+
+log_level(ERROR)
+log_appender(appender_console)
+on_path_not_exists(~ log_error("Path {.x} not exists"))
+
+level2.b <- path_chain("fileA.RData")
+level2.a <- path_chain("fileB.fst")
+level1   <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
+root     <- path_chain("files", list(level1))
+root$data$level2.a
+
+on_path_not_exists(NULL)
+
+root$data$level2.a
+
+```
+
+## Check path correctness
+
+In some cases, path may even exists, being in the same time unsuitable for our purposes. 
+`on_validate_path` function was created exactly to handle such cases.
+
+```{r validate.path}
+is_path_valid <- function(x) if (!grepl("\\.fst", x)) print("Invalid file")
+on_validate_path(is_path_valid)
+
+root$data$level2.a
+root$data$level2.b
+```

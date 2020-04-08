@@ -21,9 +21,9 @@ list of lists and character objects
 In contrast to `path_chain`, this functon creates just a list with nested list with full paths as a leaves.
 }
 \examples{
-create_sample_dir(name = "files", override = TRUE)
-fs::dir_tree("files")
-chainable.path <- full_path_chain("files")
+tmp <- create_temp_dir("files")
+create_sample_dir(tmp, override = TRUE)
+fs::dir_tree(tmp)
+chainable.path <- full_path_chain(tmp)
 chainable.path
-unlink("files", recursive = TRUE)
 }

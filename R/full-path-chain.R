@@ -8,11 +8,11 @@
 #' @importFrom rlang as_function
 #' @importFrom stats setNames
 #' @examples
-#' create_sample_dir(name = "files", override = TRUE)
-#' fs::dir_tree("files")
-#' chainable.path <- full_path_chain("files")
+#' tmp <- create_temp_dir("files")
+#' create_sample_dir(tmp, override = TRUE)
+#' fs::dir_tree(tmp)
+#' chainable.path <- full_path_chain(tmp)
 #' chainable.path
-#' unlink("files", recursive = TRUE)
 #' @return list of lists and character objects
 #' @export
 full_path_chain <- function(path = ".", root.name = ".", naming = basename){
