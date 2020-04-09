@@ -37,6 +37,8 @@ using the library named [`config`](https://github.com/rstudio/config).
 You may encounter a situation, when you’ll want to save current
 directory structure in this config.
 
+### Basic usage
+
 ``` r
 library(magrittr)
 library(path.chain)
@@ -44,11 +46,13 @@ library(path.chain)
 # Create an example file stucture
 tmp <- create_temp_dir("files")
 create_sample_dir(tmp)
+#> Warning in dir.create(path, showWarnings = !override): katalog '/tmp/
+#> RtmpgX9Su3/files' już istnieje
 #> [1] TRUE
 
 # Sample structure we've already created looks as follows
 fs::dir_tree(tmp)
-#> /tmp/Rtmp0UP4HQ/files
+#> /tmp/RtmpgX9Su3/files
 #> ├── data
 #> │   ├── example1.RData
 #> │   ├── example2.RData
@@ -68,9 +72,8 @@ file.structure$kData$kExample1
 
 # Saving file structure
 file.structure %>% 
-  as.list(root.name = "kRoot") %>%
-  as_config(wrap = "kDirs") %>%  # Required by `{config}` package
-  yaml::write_yaml(create_temp_dir("config.yaml"))
+  as_config(root.name = "kRoot", wrap = "kDirs") %>%  # Required by `{config}` package
+  yaml::write_yaml(temp_path("config.yaml"))
 ```
 
 ``` yaml
@@ -87,8 +90,10 @@ default:
       kSchema: kSchema
 ```
 
+### Loading config file
+
 ``` r
-k.dirs <- config::get("kDirs", "default", create_temp_dir("config.yaml")) %>% 
+k.dirs <- config::get("kDirs", "default", temp_path("config.yaml")) %>% 
   as_path_chain()
 
 class(k.dirs)
@@ -99,6 +104,8 @@ k.dirs$kData$.
 k.dirs$kData$kExample1
 #> [1] "files/data/example1.RData"
 ```
+
+### Path validation
 
 ``` r
 on_path_not_exists(~ print("Path {.x} not exists"))

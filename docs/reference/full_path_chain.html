@@ -164,7 +164,7 @@ In contrast to `path_chain`, this functon creates just a list with nested list w
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_temp_dir.html'>create_temp_dir</a></span>(<span class='st'>"files"</span>)
-<span class='fu'><a href='create_sample_dir.html'>create_sample_dir</a></span>(<span class='no'>tmp</span>, <span class='kw'>override</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='kw pkg'>fs</span><span class='kw ns'>::</span><span class='fu'><a href='http://fs.r-lib.org/reference/dir_tree.html'>dir_tree</a></span>(<span class='no'>tmp</span>)</div><div class='output co'>#&gt; /tmp/RtmpuOJcqB/files
+<span class='fu'><a href='create_sample_dir.html'>create_sample_dir</a></span>(<span class='no'>tmp</span>, <span class='kw'>override</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='kw pkg'>fs</span><span class='kw ns'>::</span><span class='fu'><a href='http://fs.r-lib.org/reference/dir_tree.html'>dir_tree</a></span>(<span class='no'>tmp</span>)</div><div class='output co'>#&gt; /tmp/RtmpUS3zky/files
 #&gt; ├── data
 #&gt; │   ├── example1.RData
 #&gt; │   ├── example2.RData
@@ -172,28 +172,28 @@ In contrast to `path_chain`, this functon creates just a list with nested list w
 #&gt; └── docs
 #&gt;     └── schema.txt</div><div class='input'><span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'>full_path_chain</span>(<span class='no'>tmp</span>)
 <span class='no'>chainable.path</span></div><div class='output co'>#&gt; $.
-#&gt; [1] "/tmp/RtmpuOJcqB/files"
+#&gt; [1] "/tmp/RtmpUS3zky/files"
 #&gt; 
 #&gt; $data
 #&gt; $data$.
-#&gt; [1] "/tmp/RtmpuOJcqB/files/data"
+#&gt; [1] "/tmp/RtmpUS3zky/files/data"
 #&gt; 
 #&gt; $data$example1.RData
-#&gt; [1] "/tmp/RtmpuOJcqB/files/data/example1.RData"
+#&gt; [1] "/tmp/RtmpUS3zky/files/data/example1.RData"
 #&gt; 
 #&gt; $data$example2.RData
-#&gt; [1] "/tmp/RtmpuOJcqB/files/data/example2.RData"
+#&gt; [1] "/tmp/RtmpUS3zky/files/data/example2.RData"
 #&gt; 
 #&gt; $data$persons.csv
-#&gt; [1] "/tmp/RtmpuOJcqB/files/data/persons.csv"
+#&gt; [1] "/tmp/RtmpUS3zky/files/data/persons.csv"
 #&gt; 
 #&gt; 
 #&gt; $docs
 #&gt; $docs$.
-#&gt; [1] "/tmp/RtmpuOJcqB/files/docs"
+#&gt; [1] "/tmp/RtmpUS3zky/files/docs"
 #&gt; 
 #&gt; $docs$schema.txt
-#&gt; [1] "/tmp/RtmpuOJcqB/files/docs/schema.txt"
+#&gt; [1] "/tmp/RtmpUS3zky/files/docs/schema.txt"
 #&gt; 
 #&gt; </div></pre>
   </div>

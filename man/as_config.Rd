@@ -2,9 +2,16 @@
 % Please edit documentation in R/conversion.R
 \name{as_config}
 \alias{as_config}
+\alias{as_config.path_chain}
+\alias{as_config.list}
 \title{Prepare list to be saved as config .yaml file}
 \usage{
-as_config(x, config = "default", wrap = "dirs")
+as_config(x, config = "default", wrap = "dirs", ...)
+
+\method{as_config}{path_chain}(x, config = "default", wrap = "dirs",
+  root.name = "root.dir", ...)
+
+\method{as_config}{list}(x, config = "default", wrap = "dirs", ...)
 }
 \arguments{
 \item{x}{list with directory structure}

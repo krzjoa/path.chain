@@ -4,20 +4,21 @@
 \alias{create_temp_dir}
 \title{Create temporary diectory and return its name}
 \usage{
-create_temp_dir(..., warn = FALSE)
+create_temp_dir(..., warn = FALSE, recursive = FALSE,
+  fsep = .Platform$file.sep)
 }
 \arguments{
-\item{...}{arbitrary character objects (optional)}
+\item{...}{arbitrary character objects}
 
 \item{warn}{warn, if folder already exists}
+
+\item{recursive}{ogical. Should elements of the path other than the last be created?
+If true, like the Unix command mkdir -p}
+
+\item{fsep}{the path separator to use}
 }
 \description{
 Create temporary diectory and return its name
-}
-\details{
-Be careful: if you call this function, it only creates the root temporary file.
-Even if using concatenation, the only object created in file system is tmp directory.
-All the rest has to be created on your own, e.g. calling \link[base]{dir.create} function.
 }
 \examples{
 # Simply create and return temporal directory

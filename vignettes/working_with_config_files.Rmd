@@ -39,7 +39,7 @@ full.path.chain <- full_path_chain(tmp)
 print(full.path.chain)
 
 full.path.chain %>% 
-  yaml::write_yaml(create_temp_dir("config.yaml"))
+  yaml::write_yaml(temp_path("config.yaml"))
 ```
 
 Configurtion file **config.yaml** will look as follows:
@@ -115,9 +115,9 @@ k.dirs$kData$kExample1
 What if we want to keep absolute paths rather than the relative ones?
 
 ```{r absolute.full.path}
-full_path_chain(normalizePath(create_temp_dir("files")), "kRoot", naming_fun) %>% 
+full_path_chain(normalizePath(temp_path("files")), "kRoot", naming_fun) %>% 
   as_config("default", "kDirs") %>% 
-  yaml::write_yaml(create_temp_dir("config.yaml"))
+  yaml::write_yaml(temp_path("config.yaml"))
 ```
 Wrapping with **default** key is required by `config` package.
 
@@ -140,16 +140,23 @@ default:
 ## 2. Using `create_path_chain` function, which returns nested `path_chain` objects.
 
 ```{r path_chain}
-path.chain <- create_path_chain(create_temp_dir("files"), naming = naming_fun)
+path.chain <- create_path_chain(temp_path("files"), naming = naming_fun)
 
 class(path.chain)
 
 print(path.chain$kData$kExample1)
 
+# Most verbose version
 path.chain %>% 
   as.list(root.name = "kRoot") %>%
   as_config("default", "kDirs") %>% 
-  yaml::write_yaml(create_temp_dir("config.yaml"))
+  yaml::write_yaml(temp_path("config.yaml"))
+
+# Conciser
+path.chain %>% 
+  as_config("default", "kDirs", root.name = "kRoot") %>% 
+  yaml::write_yaml(temp_path("config.yaml"))
+
 ```
 
 ```{yaml}

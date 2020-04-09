@@ -17,13 +17,17 @@ reference:
   - as_path_chain
   - as.list.path_chain
   - as_config
+- title: Path validation
+  contents:
+  - on_path_not_exists
+  - on_validate_path
 - title: Auxilliary functions
   contents:
   - path_children
   - file_path
+  - temp_path
   - naming_k
   - create_sample_dir
   - create_temp_dir
   - print.path_chain
-  - on_path_not_exists
-  - on_validate_path
+

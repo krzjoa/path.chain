@@ -42,13 +42,14 @@ Most of all, I mean bigger projects, where you store a complex file structure in
 You can handle such configuration YAML file using the library named [`config`](https://github.com/rstudio/config).
 You may encounter a situation, when you'll want to save current directory structure in this config.
 
+### Basic usage
 ```{r config.yml}
 library(magrittr)
 library(path.chain)
 
 # Create an example file stucture
 tmp <- create_temp_dir("files")
-create_sample_dir(tmp)
+create_sample_dir(tmp, override = TRUE)
 
 # Sample structure we've already created looks as follows
 fs::dir_tree(tmp)
@@ -63,9 +64,8 @@ file.structure$kData$kExample1
 
 # Saving file structure
 file.structure %>% 
-  as.list(root.name = "kRoot") %>%
-  as_config(wrap = "kDirs") %>%  # Required by `{config}` package
-  yaml::write_yaml(create_temp_dir("config.yaml"))
+  as_config(root.name = "kRoot", wrap = "kDirs") %>%  # Required by `{config}` package
+  yaml::write_yaml(temp_path("config.yaml"))
 ```
 
 ```{yaml} 
@@ -82,8 +82,9 @@ default:
       kSchema: kSchema
 ```
 
+### Loading config file
 ```{r as_path_chain}
-k.dirs <- config::get("kDirs", "default", create_temp_dir("config.yaml")) %>% 
+k.dirs <- config::get("kDirs", "default", temp_path("config.yaml")) %>% 
   as_path_chain()
 
 class(k.dirs)
@@ -92,7 +93,7 @@ k.dirs$kData$.
 k.dirs$kData$kExample1
 ```
 
-
+### Path validation
 ```{r validate}
 on_path_not_exists(~ print("Path {.x} not exists"))
 is_path_valid <- function(x) if (!grepl("\\.fst", x)) print("Invalid file")

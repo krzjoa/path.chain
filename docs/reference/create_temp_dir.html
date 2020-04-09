@@ -137,38 +137,42 @@
     <p>Create temporary diectory and return its name</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_temp_dir</span>(<span class='no'>...</span>, <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>create_temp_dir</span>(<span class='no'>...</span>, <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>fsep</span> <span class='kw'>=</span> <span class='no'>.Platform</span>$<span class='no'>file.sep</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>arbitrary character objects (optional)</p></td>
+      <td><p>arbitrary character objects</p></td>
     </tr>
     <tr>
       <th>warn</th>
       <td><p>warn, if folder already exists</p></td>
     </tr>
+    <tr>
+      <th>recursive</th>
+      <td><p>ogical. Should elements of the path other than the last be created?
+If true, like the Unix command mkdir -p</p></td>
+    </tr>
+    <tr>
+      <th>fsep</th>
+      <td><p>the path separator to use</p></td>
+    </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Be careful: if you call this function, it only creates the root temporary file.
-Even if using concatenation, the only object created in file system is tmp directory.
-All the rest has to be created on your own, e.g. calling <a href='https://rdrr.io/r/base/files2.html'>dir.create</a> function.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Simply create and return temporal directory</span>
-<span class='fu'>create_temp_dir</span>()</div><div class='output co'>#&gt; [1] "/tmp/RtmpuOJcqB"</div><div class='input'><span class='co'># Create temp dir and return concatenated path</span>
+<span class='fu'>create_temp_dir</span>()</div><div class='output co'>#&gt; [1] "/tmp/RtmpUS3zky"</div><div class='input'><span class='co'># Create temp dir and return concatenated path</span>
 <span class='co'># Keep in mind, that 'files' and 'report_2020.xls' will not be created.</span>
-<span class='fu'>create_temp_dir</span>(<span class='st'>"files"</span>, <span class='st'>"report_2020.xls"</span>)</div><div class='output co'>#&gt; [1] "/tmp/RtmpuOJcqB/files/report_2020.xls"</div></pre>
+<span class='fu'>create_temp_dir</span>(<span class='st'>"files"</span>, <span class='st'>"report_2020.xls"</span>)</div><div class='output co'>#&gt; [1] "/tmp/RtmpUS3zky/files/report_2020.xls"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

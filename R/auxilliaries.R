@@ -76,11 +76,11 @@ create_sample_dir <- function(path = "files", override = FALSE){
 
 #' @name create_temp_dir
 #' @title Create temporary diectory and return its name
-#' @param ... arbitrary character objects (optional)
+#' @param ... arbitrary character objects
 #' @param warn warn, if folder already exists
-#' @details Be careful: if you call this function, it only creates the root temporary file.
-#' Even if using concatenation, the only object created in file system is tmp directory.
-#' All the rest has to be created on your own, e.g. calling \link[base]{dir.create} function.
+#' @param recursive ogical. Should elements of the path other than the last be created?
+#' If true, like the Unix command mkdir -p
+#' @param fsep the path separator to use
 #' @examples
 #' # Simply create and return temporal directory
 #' create_temp_dir()
@@ -88,10 +88,24 @@ create_sample_dir <- function(path = "files", override = FALSE){
 #' # Keep in mind, that 'files' and 'report_2020.xls' will not be created.
 #' create_temp_dir("files", "report_2020.xls")
 #' @export
-create_temp_dir <- function(..., warn = FALSE){
+create_temp_dir <- function(..., warn = FALSE, recursive = FALSE, fsep = .Platform$file.sep){
   tmp <- tempdir()
-  dir.create(tmp, showWarnings = warn)
-  file.path(tmp, ...)
+  tmp <- file.path(tmp, ..., fsep = fsep)
+  dir.create(tmp, showWarnings = warn, recursive = recursive)
+  tmp
 }
 
+#' @name temp_path
+#' @title Construct path to file in a temporary directory
+#' @param ... arbitrary character objects
+#' @param fsep the path separator to use.
+#' @details Be careful: if you call this function, it only creates a path for temporary file/dir.
+#' All the rest has to be created on your own, e.g. calling \link[base]{dir.create} function.
+#' @return a path
+#' @examples
+#' temp_path("files", "report.csv")
+#' @export
+temp_path <- function(..., fsep = .Platform$file.sep){
+  file.path(tempdir(), ..., fsep = fsep)
+}
 

@@ -83,7 +83,25 @@ as.list.path_chain <- function(x, ..., root.name = "root.dir"){
 #'    as_config("default", "kDirs") %>%
 #'    yaml::write_yaml(create_temp_dir("config.yaml"))
 #' @export
-as_config <- function(x, config = "default", wrap = "dirs") {
+as_config <- function(x, config = "default", wrap = "dirs", ...){
+  UseMethod('as_config')
+}
+
+#' @rdname as_config
+#' @export
+as_config.path_chain <- function(x, config = "default", wrap = "dirs",
+                                 root.name = "root.dir", ...){
+ as_config.list(
+   as.list.path_chain(x, root.name = root.name),
+   config = config,
+   wrap = wrap
+  )
+}
+
+
+#' @rdname as_config
+#' @export
+as_config.list <- function(x, config = "default", wrap = "dirs", ...) {
 
   if (is.character(wrap)){
     wrapped <- list()
