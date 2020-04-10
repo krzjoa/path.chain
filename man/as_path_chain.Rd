@@ -9,7 +9,7 @@ as_path_chain(nested.list, root.name = "kRoot")
 \arguments{
 \item{nested.list}{`list` object with nested lists/strings inside}
 
-\item{root.name}{for root directory}
+\item{root.name}{key for root directory}
 }
 \value{
 path_chain object
@@ -33,8 +33,8 @@ fs::dir_tree(tmp)
 create_path_chain(tmp, naming = naming_k) \%>\%
   as.list(root.name = "kRoot") \%>\%
   as_config("default", "kDirs") \%>\%
-  yaml::write_yaml(file.path(tempdir(), "config.yaml"))
-chainable.path <- config::get("kDirs", "defaul", create_temp_dir("config.yaml")) \%>\%
+  yaml::write_yaml(temp_path("config.yaml"))
+chainable.path <- config::get("kDirs", "defaul", temp_path("config.yaml")) \%>\%
  as_path_chain()
 class(chainable.path)
 chainable.path$.

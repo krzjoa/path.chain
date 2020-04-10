@@ -9,7 +9,7 @@
 as_config(x, config = "default", wrap = "dirs", ...)
 
 \method{as_config}{path_chain}(x, config = "default", wrap = "dirs",
-  root.name = "root.dir", ...)
+  ..., root.name = "root.dir")
 
 \method{as_config}{list}(x, config = "default", wrap = "dirs", ...)
 }
@@ -19,6 +19,10 @@ as_config(x, config = "default", wrap = "dirs", ...)
 \item{config}{configuration name}
 
 \item{wrap}{key name to wrap directory structure}
+
+\item{...}{additional arguments (not used at the moment)}
+
+\item{root.name}{key for root directory (for path_chain only)}
 }
 \value{
 list compatible with `{config}` package
@@ -37,9 +41,9 @@ create_sample_dir(tmp, override = TRUE)
 full_path_chain(tmp, "kRoot", naming_k) \%>\%
    list(kDirs = .) \%>\%
    list(default = .) \%>\%
-   yaml::write_yaml(create_temp_dir("config.yaml"))
+   yaml::write_yaml(temp_path("config.yaml"))
 # We can simply use such function
 full_path_chain(tmp, "kRoot", naming_k) \%>\%
    as_config("default", "kDirs") \%>\%
-   yaml::write_yaml(create_temp_dir("config.yaml"))
+   yaml::write_yaml(temp_path("config.yaml"))
 }

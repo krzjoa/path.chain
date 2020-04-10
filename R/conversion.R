@@ -1,7 +1,7 @@
 #' @name as_path_chain
 #' @title Create chainable path
 #' @param nested.list `list` object with nested lists/strings inside
-#' @param root.name for root directory
+#' @param root.name key for root directory
 #' @description This function always treats first object in the nested list
 #' as a subdirectory root path
 #' @return path_chain object
@@ -20,8 +20,8 @@
 #' create_path_chain(tmp, naming = naming_k) %>%
 #'   as.list(root.name = "kRoot") %>%
 #'   as_config("default", "kDirs") %>%
-#'   yaml::write_yaml(file.path(tempdir(), "config.yaml"))
-#' chainable.path <- config::get("kDirs", "defaul", create_temp_dir("config.yaml")) %>%
+#'   yaml::write_yaml(temp_path("config.yaml"))
+#' chainable.path <- config::get("kDirs", "defaul", temp_path("config.yaml")) %>%
 #'  as_path_chain()
 #' class(chainable.path)
 #' chainable.path$.
@@ -64,6 +64,8 @@ as.list.path_chain <- function(x, ..., root.name = "root.dir"){
 #' @param x list with directory structure
 #' @param config configuration name
 #' @param wrap key name to wrap directory structure
+#' @param root.name key for root directory (for path_chain only)
+#' @param ... additional arguments (not used at the moment)
 #' @return list compatible with `{config}` package
 #' @description This function is provided to keep compatibility
 #' with `{config}` package, which requires existence of default key.
@@ -77,11 +79,11 @@ as.list.path_chain <- function(x, ..., root.name = "root.dir"){
 #' full_path_chain(tmp, "kRoot", naming_k) %>%
 #'    list(kDirs = .) %>%
 #'    list(default = .) %>%
-#'    yaml::write_yaml(create_temp_dir("config.yaml"))
+#'    yaml::write_yaml(temp_path("config.yaml"))
 #' # We can simply use such function
 #' full_path_chain(tmp, "kRoot", naming_k) %>%
 #'    as_config("default", "kDirs") %>%
-#'    yaml::write_yaml(create_temp_dir("config.yaml"))
+#'    yaml::write_yaml(temp_path("config.yaml"))
 #' @export
 as_config <- function(x, config = "default", wrap = "dirs", ...){
   UseMethod('as_config')
@@ -90,7 +92,7 @@ as_config <- function(x, config = "default", wrap = "dirs", ...){
 #' @rdname as_config
 #' @export
 as_config.path_chain <- function(x, config = "default", wrap = "dirs",
-                                 root.name = "root.dir", ...){
+                                ..., root.name = "root.dir"){
  as_config.list(
    as.list.path_chain(x, root.name = root.name),
    config = config,

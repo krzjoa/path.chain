@@ -63,10 +63,10 @@ naming_fun <- function(x){
   paste0("k", tools::file_path_sans_ext(stringi::stri_trans_totitle(basename(x))))
 }
 
-full.path.chain.2 <- full_path_chain(create_temp_dir("files"), "kRoot", naming_fun)
+full.path.chain.2 <- full_path_chain(temp_path("files"), "kRoot", naming_fun)
 
 full.path.chain.2 %>% 
-  yaml::write_yaml(create_temp_dir("config.yaml"))
+  yaml::write_yaml(temp_path("config.yaml"))
 ```
 
 ```{yaml}
@@ -87,7 +87,7 @@ some additional `list`.
 ```{r wrapped}
 list(kDirs = full.path.chain.2) %>% 
   list(default = .) %>% 
-  yaml::write_yaml(create_temp_dir("config.yaml"))
+  yaml::write_yaml(temp_path("config.yaml"))
 ```
 
 ```{yaml}
@@ -107,7 +107,7 @@ default:
 Then, we can load such config file using `{config}` package:
 
 ```{r loading.full.path.config}
-k.dirs <- config::get("kDirs", config = "default", file = create_temp_dir("config.yaml"))
+k.dirs <- config::get("kDirs", config = "default", file = temp_path("config.yaml"))
 k.dirs$kDocs$kRoot
 k.dirs$kData$kExample1
 ```
@@ -176,7 +176,7 @@ As you can see, such structur of the config file seems to be more legible than t
 `full_path_chain` function. The config file shown above can be easily consumed using `config` package and `as_path_chain` function.
 
 ```{r as_path_chain}
-k.dirs <- config::get("kDirs", "default", create_temp_dir("config.yaml")) %>% 
+k.dirs <- config::get("kDirs", "default", temp_path("config.yaml")) %>% 
   as_path_chain()
 
 class(k.dirs)

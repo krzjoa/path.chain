@@ -45,14 +45,12 @@ library(path.chain)
 
 # Create an example file stucture
 tmp <- create_temp_dir("files")
-create_sample_dir(tmp)
-#> Warning in dir.create(path, showWarnings = !override): katalog '/tmp/
-#> RtmpgX9Su3/files' już istnieje
+create_sample_dir(tmp, override = TRUE)
 #> [1] TRUE
 
 # Sample structure we've already created looks as follows
 fs::dir_tree(tmp)
-#> /tmp/RtmpgX9Su3/files
+#> /tmp/Rtmpv0mmSI/files
 #> ├── data
 #> │   ├── example1.RData
 #> │   ├── example2.RData
