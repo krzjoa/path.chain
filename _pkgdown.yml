@@ -9,7 +9,6 @@ reference:
 - title: Chainable paths
   contents:
   - path_chain
-  - create_path_chain
   - $.path_chain
   - full_path_chain
 - title: Type conversion
@@ -23,6 +22,7 @@ reference:
   - on_validate_path
 - title: Auxilliary functions
   contents:
+  - path_link
   - path_children
   - file_path
   - temp_path

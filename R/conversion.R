@@ -17,7 +17,7 @@
 #' tmp <- create_temp_dir("files")
 #' create_sample_dir(tmp, override = TRUE)
 #' fs::dir_tree(tmp)
-#' create_path_chain(tmp, naming = naming_k) %>%
+#' path_chain(tmp, naming = naming_k) %>%
 #'   as.list(root.name = "kRoot") %>%
 #'   as_config("default", "kDirs") %>%
 #'   yaml::write_yaml(temp_path("config.yaml"))
@@ -31,9 +31,9 @@ as_path_chain <- function(nested.list, root.name = 'kRoot'){
   if(length(nested.list) > 1){
     node <- nested.list[[root.name]]
     children <- nested.list[which(names(nested.list) != root.name)]
-    path_chain(node, Map(as_path_chain, children))
+    path_link(node, Map(as_path_chain, children))
   } else {
-    path_chain(node = nested.list[[1]])
+    path_link(node = nested.list[[1]])
   }
 }
 
@@ -45,7 +45,7 @@ as_path_chain <- function(nested.list, root.name = 'kRoot'){
 #' @examples
 #' tmp <- create_temp_dir("files")
 #' create_sample_dir(tmp)
-#' path.chain <- create_path_chain(tmp)
+#' path.chain <- path_chain(tmp)
 #' as.list(path.chain)
 #' @export
 as.list.path_chain <- function(x, ..., root.name = "root.dir"){

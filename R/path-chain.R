@@ -1,22 +1,23 @@
-#' @name path_chain
-#' @title Create path_chain object - a directory or a file
-#' @description Basic package's object: an object representing a link in the chain
+#' @name path_link
+#' @title Creates a link of path chain - a directory or a file
+#' @description It returns basic package's object: an object representing a link in the chain.
+#' Each link has the path_chain class - it can represents a one-element path chain
 #' @param node Current node name; character
 #' @param children list of children - path_chains
 #' @return path_chain object
 #' @importFrom stats setNames
 #' @examples
 #' # If we want to create our chain manually, we have start from the leaves
-#' level2.b <- path_chain("fileA.RData")
-#' level2.a <- path_chain("fileB.RData")
-#' level1   <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
-#' root     <- path_chain("files", list(level1))
+#' level2.b <- path_link("fileA.RData")
+#' level2.a <- path_link("fileB.RData")
+#' level1   <- path_link("data", list(level2.a = level2.a , level2.b = level2.b))
+#' root     <- path_link("files", list(level1))
 #' # Print root path
 #' root$.
 #' # Print file path using chaining
 #' root$data$level2.a
 #' @export
-path_chain <- function(node = NULL, children = NULL){
+path_link <- function(node = NULL, children = NULL){
   if(is.null(names(children)) & !is.null(children))
     children <- setNames(children, sapply(children, function(x) attr(x, 'node')))
   nms <- names(children)
@@ -34,10 +35,10 @@ path_chain <- function(node = NULL, children = NULL){
 #' @return path_chain or character, if path indicates leaf of structure tree
 #' @examples
 #' #' If we want to create our chain manually, we have start from the leaves
-#' level2.b <- path_chain("fileA.RData")
-#' level2.a <- path_chain("fileB.RData")
-#' level1   <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
-#' root     <- path_chain("files", list(level1))
+#' level2.b <- path_link("fileA.RData")
+#' level2.a <- path_link("fileB.RData")
+#' level1   <- path_link("data", list(level2.a = level2.a , level2.b = level2.b))
+#' root     <- path_link("files", list(level1))
 #' # Print root path
 #' root$.
 #' # Print file path using chaining
@@ -79,33 +80,34 @@ path_chain <- function(node = NULL, children = NULL){
   }
 }
 
-#' @name create_path_chain
+#' @name path_chain
 #' @title Get directory structure and create path_chain object
 #' @param path root of the directory structure
 #' @param naming function, which defines naming convention
-#' @description This function returns
+#' @description Returns `path_chain` object, which reflects
+#' structure of the folder passed with `path` param
 #' @return path_chain object
 #' @importFrom stats setNames
 #' @examples
 #' tmp <- create_temp_dir("files")
 #' create_sample_dir(tmp, override = TRUE)
 #' fs::dir_tree(tmp)
-#' chainable.path <- create_path_chain(tmp)
+#' chainable.path <- path_chain(tmp)
 #' chainable.path$data$persons.csv
 #' # With customized naming convention
-#' chainable.path <- create_path_chain(tmp, naming = naming_k)
+#' chainable.path <- path_chain(tmp, naming = naming_k)
 #' chainable.path$kData$kPersons
 #' @export
-create_path_chain <- function(path, naming = basename){
+path_chain <- function(path, naming = basename){
   if(dir.exists(path)){
     file.list <- list.files(path, recursive = FALSE,
                             include.dirs = TRUE)
     file.list <- setNames(file.path(path, file.list), file.list)
-    call_create_path_chain <- function(x) create_path_chain(x, naming = naming)
-    children <-Map(call_create_path_chain, file.list)
+    call_path_chain <- function(x) path_chain(x, naming = naming)
+    children <-Map(call_path_chain, file.list)
     children <- setNames(children, naming(file.list))
-    path_chain(node = basename(path), children)
+    path_link(node = basename(path), children)
   } else {
-    path_chain(node = basename(path))
+    path_link(node = basename(path))
   }
 }

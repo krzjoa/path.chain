@@ -8,12 +8,15 @@ on_path_not_exists(fun)
 }
 \arguments{
 \item{fun}{a function, one-side formula or NULL; if missing,
-eturns value of the path.chain.on.path.not.exists option}
+returns value of the path.chain.on.path.not.exists option}
 }
 \description{
 Function called if path does not exists
 }
 \examples{
+# We'll create an options backup for this example
+old.options <- options()
 on_path_not_exists(print)
 on_path_not_exists()
+options(old.options)
 }

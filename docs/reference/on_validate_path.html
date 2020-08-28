@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">path.chain</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -150,10 +150,12 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>is_path_valid</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span>(<span class='st'>"\\.fst"</span>, <span class='no'>x</span>)
+    <pre class="examples"><div class='input'><span class='co'># We'll create an options backup for this example</span>
+<span class='no'>old.options</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>()
+<span class='no'>is_path_valid</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span>(<span class='st'>"\\.fst"</span>, <span class='no'>x</span>)
 <span class='fu'>on_validate_path</span>(<span class='no'>is_path_valid</span>)
 <span class='fu'>on_validate_path</span>()</div><div class='output co'>#&gt; function(x) grepl("\\.fst", x)
-#&gt; &lt;environment: 0x55c42df900b8&gt;</div></pre>
+#&gt; &lt;environment: 0x564e602282a8&gt;</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='no'>old.options</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

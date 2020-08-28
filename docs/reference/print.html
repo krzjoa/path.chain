@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">path.chain</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -155,15 +155,15 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>level2.b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='path_chain.html'>path_chain</a></span>(<span class='st'>"fileA.RData"</span>)
-<span class='no'>level2.a</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='path_chain.html'>path_chain</a></span>(<span class='st'>"fileB.RData"</span>)
-<span class='no'>level1</span>   <span class='kw'>&lt;-</span> <span class='fu'><a href='path_chain.html'>path_chain</a></span>(<span class='st'>"data"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>level2.a</span> <span class='kw'>=</span> <span class='no'>level2.a</span> , <span class='kw'>level2.b</span> <span class='kw'>=</span> <span class='no'>level2.b</span>))
-<span class='no'>root</span>     <span class='kw'>&lt;-</span> <span class='fu'><a href='path_chain.html'>path_chain</a></span>(<span class='st'>"files"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>level1</span>))
+    <pre class="examples"><div class='input'><span class='no'>level2.b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='path_link.html'>path_link</a></span>(<span class='st'>"fileA.RData"</span>)
+<span class='no'>level2.a</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='path_link.html'>path_link</a></span>(<span class='st'>"fileB.RData"</span>)
+<span class='no'>level1</span>   <span class='kw'>&lt;-</span> <span class='fu'><a href='path_link.html'>path_link</a></span>(<span class='st'>"data"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>level2.a</span> <span class='kw'>=</span> <span class='no'>level2.a</span> , <span class='kw'>level2.b</span> <span class='kw'>=</span> <span class='no'>level2.b</span>))
+<span class='no'>root</span>     <span class='kw'>&lt;-</span> <span class='fu'><a href='path_link.html'>path_link</a></span>(<span class='st'>"files"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>level1</span>))
 <span class='fu'>print</span>(<span class='no'>root</span>)</div><div class='output co'>#&gt; path_chain 
 #&gt;  root: files 
 #&gt;  childen: 2</div><div class='input'>
 <span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_temp_dir.html'>create_temp_dir</a></span>(<span class='st'>"files"</span>)
-<span class='fu'><a href='create_sample_dir.html'>create_sample_dir</a></span>(<span class='no'>tmp</span>, <span class='kw'>override</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_path_chain.html'>create_path_chain</a></span>(<span class='no'>tmp</span>)
+<span class='fu'><a href='create_sample_dir.html'>create_sample_dir</a></span>(<span class='no'>tmp</span>, <span class='kw'>override</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>chainable.path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='path_chain.html'>path_chain</a></span>(<span class='no'>tmp</span>)
 <span class='fu'>print</span>(<span class='no'>chainable.path</span>)</div><div class='output co'>#&gt; path_chain 
 #&gt;  root: files 
 #&gt;  childen: 3</div></pre>

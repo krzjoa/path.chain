@@ -16,14 +16,14 @@
 Print path_chain object
 }
 \examples{
-level2.b <- path_chain("fileA.RData")
-level2.a <- path_chain("fileB.RData")
-level1   <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
-root     <- path_chain("files", list(level1))
+level2.b <- path_link("fileA.RData")
+level2.a <- path_link("fileB.RData")
+level1   <- path_link("data", list(level2.a = level2.a , level2.b = level2.b))
+root     <- path_link("files", list(level1))
 print(root)
 
 tmp <- create_temp_dir("files")
 create_sample_dir(tmp, override = TRUE)
-chainable.path <- create_path_chain(tmp)
+chainable.path <- path_chain(tmp)
 print(chainable.path)
 }

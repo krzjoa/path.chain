@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">path.chain</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@
 <a class="sourceLine" id="cb2-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co"># Sample structure we've already created looks as follows</span></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10">fs<span class="op">::</span><span class="kw"><a href="http://fs.r-lib.org/reference/dir_tree.html">dir_tree</a></span>(tmp)</a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; /tmp/Rtmpv0mmSI/files</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; /tmp/RtmpjZLzHv/files</span></a>
 <a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; ├── data</span></a>
 <a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; │   ├── example1.RData</span></a>
 <a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; │   ├── example2.RData</span></a>
@@ -134,12 +134,12 @@
 <a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt;     └── schema.txt</span></a>
 <a class="sourceLine" id="cb2-18" data-line-number="18"></a>
 <a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co"># Loading stucture</span></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20">file.structure &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_path_chain.html">create_path_chain</a></span>(tmp)</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">file.structure &lt;-<span class="st"> </span><span class="kw">create_path_chain</span>(tmp)</a>
 <a class="sourceLine" id="cb2-21" data-line-number="21">file.structure<span class="op">$</span>data<span class="op">$</span>example1.RData</a>
 <a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt; [1] "files/data/example1.RData"</span></a>
 <a class="sourceLine" id="cb2-23" data-line-number="23"></a>
 <a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co"># Loading stucture with naming convention</span></a>
-<a class="sourceLine" id="cb2-25" data-line-number="25">file.structure &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_path_chain.html">create_path_chain</a></span>(tmp, <span class="dt">naming =</span> naming_k)</a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">file.structure &lt;-<span class="st"> </span><span class="kw">create_path_chain</span>(tmp, <span class="dt">naming =</span> naming_k)</a>
 <a class="sourceLine" id="cb2-26" data-line-number="26">file.structure<span class="op">$</span>kData<span class="op">$</span>kExample1</a>
 <a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">#&gt; [1] "files/data/example1.RData"</span></a>
 <a class="sourceLine" id="cb2-28" data-line-number="28"></a>

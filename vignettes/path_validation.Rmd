@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 
 We can easily set global path validation using `on_path_not_exists` and `on_validate_path` functions.
 
+```{r options.backup}
+old.options <- options()
+```
+
 ## path.chain + logger: handling errors
 ```{r setup}
 library(path.chain)
@@ -25,10 +29,10 @@ log_level(ERROR)
 log_appender(appender_console)
 on_path_not_exists(~ log_error("Path {.x} not exists"))
 
-level2.b <- path_chain("fileA.RData")
-level2.a <- path_chain("fileB.fst")
-level1   <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
-root     <- path_chain("files", list(level1))
+level2.b <- path_link("fileA.RData")
+level2.a <- path_link("fileB.fst")
+level1   <- path_link("data", list(level2.a = level2.a , level2.b = level2.b))
+root     <- path_link("files", list(level1))
 root$data$level2.a
 
 on_path_not_exists(NULL)
@@ -48,4 +52,8 @@ on_validate_path(is_path_valid)
 
 root$data$level2.a
 root$data$level2.b
+```
+
+```{r clean}
+options(old.options)
 ```

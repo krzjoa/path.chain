@@ -23,7 +23,7 @@ full.path.chain
 tmp <- create_temp_dir("files")
 create_sample_dir(tmp)
 # Using with path_chain / create_path_chain
-path.chain <- create_path_chain(tmp, naming = naming_k)
+path.chain <- path_chain(tmp, naming = naming_k)
 path.chain \%>\%
   as.list()
 }

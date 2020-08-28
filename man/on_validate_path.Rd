@@ -13,7 +13,10 @@ on_validate_path(fun)
 Function called to validate path correctness
 }
 \examples{
+# We'll create an options backup for this example
+old.options <- options()
 is_path_valid <- function(x) grepl("\\\\.fst", x)
 on_validate_path(is_path_valid)
 on_validate_path()
+options(old.options)
 }

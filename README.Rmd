@@ -34,7 +34,7 @@ devtools::install_github("krzjoa/path.chain")
 ## Example
 If you are using RStudio, you know that among many excellent features of this IDE there is a **path autocompletion**.
 
-![rstudio](man/figures/rstudio-autocompletion.gif)
+![rstudio](man/figures/path_chain.gif)
 
 
 However, you can also meet situations, when that may be not enough.
@@ -55,11 +55,11 @@ create_sample_dir(tmp, override = TRUE)
 fs::dir_tree(tmp)
 
 # Loading stucture
-file.structure <- create_path_chain(tmp)
+file.structure <- path_chain(tmp)
 file.structure$data$example1.RData
 
 # Loading stucture with naming convention
-file.structure <- create_path_chain(tmp, naming = naming_k)
+file.structure <- path_chain(tmp, naming = naming_k)
 file.structure$kData$kExample1
 
 # Saving file structure
@@ -94,6 +94,10 @@ k.dirs$kData$kExample1
 ```
 
 ### Path validation
+```{r old.options, echo=FALSE}
+old.options <- options()
+```
+
 ```{r validate}
 on_path_not_exists(~ print("Path {.x} not exists"))
 is_path_valid <- function(x) if (!grepl("\\.fst", x)) print("Invalid file")
@@ -106,4 +110,8 @@ root     <- path_chain("files", list(level1))
 
 root$data$level2.a
 root$data$level2.b
+```
+
+```{r clean, echo=FALSE}
+options(old.options)
 ```

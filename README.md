@@ -28,7 +28,7 @@ devtools::install_github("krzjoa/path.chain")
 If you are using RStudio, you know that among many excellent features of
 this IDE there is a **path autocompletion**.
 
-![rstudio](man/figures/rstudio-autocompletion.gif)
+![rstudio](man/figures/path_chain.gif)
 
 However, you can also meet situations, when that may be not enough. Most
 of all, I mean bigger projects, where you store a complex file structure
@@ -50,7 +50,7 @@ create_sample_dir(tmp, override = TRUE)
 
 # Sample structure we've already created looks as follows
 fs::dir_tree(tmp)
-#> /tmp/Rtmpv0mmSI/files
+#> /tmp/Rtmpxweu19/files
 #> ├── data
 #> │   ├── example1.RData
 #> │   ├── example2.RData
@@ -59,12 +59,12 @@ fs::dir_tree(tmp)
 #>     └── schema.txt
 
 # Loading stucture
-file.structure <- create_path_chain(tmp)
+file.structure <- path_chain(tmp)
 file.structure$data$example1.RData
 #> [1] "files/data/example1.RData"
 
 # Loading stucture with naming convention
-file.structure <- create_path_chain(tmp, naming = naming_k)
+file.structure <- path_chain(tmp, naming = naming_k)
 file.structure$kData$kExample1
 #> [1] "files/data/example1.RData"
 
@@ -116,10 +116,7 @@ level1   <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
 root     <- path_chain("files", list(level1))
 
 root$data$level2.a
-#> [1] "Path {.x} not exists"
-#> [1] "files/data/fileB.fst"
+#> NULL
 root$data$level2.b
-#> [1] "Path {.x} not exists"
-#> [1] "Invalid file"
-#> [1] "files/data/fileA.RData"
+#> NULL
 ```

@@ -18,6 +18,6 @@ Get children nodes, i.e. all the suddiectories in the given directory
 \examples{
 tmp <- create_temp_dir("files")
 create_sample_dir(tmp, override = TRUE)
-path.chain <- create_path_chain(tmp)
+path.chain <- path_chain(tmp)
 path_children(path.chain)
 }

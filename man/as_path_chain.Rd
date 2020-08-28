@@ -30,7 +30,7 @@ chainable.path$subdir$files2.csv
 tmp <- create_temp_dir("files")
 create_sample_dir(tmp, override = TRUE)
 fs::dir_tree(tmp)
-create_path_chain(tmp, naming = naming_k) \%>\%
+path_chain(tmp, naming = naming_k) \%>\%
   as.list(root.name = "kRoot") \%>\%
   as_config("default", "kDirs") \%>\%
   yaml::write_yaml(temp_path("config.yaml"))

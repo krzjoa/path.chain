@@ -2,29 +2,29 @@
 % Please edit documentation in R/path-chain.R
 \name{path_chain}
 \alias{path_chain}
-\title{Create path_chain object - a directory or a file}
+\title{Get directory structure and create path_chain object}
 \usage{
-path_chain(node = NULL, children = NULL)
+path_chain(path, naming = basename)
 }
 \arguments{
-\item{node}{Current node name; character}
+\item{path}{root of the directory structure}
 
-\item{children}{list of children - path_chains}
+\item{naming}{function, which defines naming convention}
 }
 \value{
 path_chain object
 }
 \description{
-Basic package's object: an object representing a link in the chain
+Returns `path_chain` object, which reflects
+structure of the folder passed with `path` param
 }
 \examples{
-# If we want to create our chain manually, we have start from the leaves
-level2.b <- path_chain("fileA.RData")
-level2.a <- path_chain("fileB.RData")
-level1   <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
-root     <- path_chain("files", list(level1))
-# Print root path
-root$.
-# Print file path using chaining
-root$data$level2.a
+tmp <- create_temp_dir("files")
+create_sample_dir(tmp, override = TRUE)
+fs::dir_tree(tmp)
+chainable.path <- path_chain(tmp)
+chainable.path$data$persons.csv
+# With customized naming convention
+chainable.path <- path_chain(tmp, naming = naming_k)
+chainable.path$kData$kPersons
 }

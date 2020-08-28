@@ -137,10 +137,10 @@ default:
 ```
 
 
-## 2. Using `create_path_chain` function, which returns nested `path_chain` objects.
+## 2. Using `path_chain` function, which returns nested `path_chain` objects.
 
 ```{r path_chain}
-path.chain <- create_path_chain(temp_path("files"), naming = naming_fun)
+path.chain <- path_chain(temp_path("files"), naming = naming_fun)
 
 class(path.chain)
 
@@ -160,16 +160,17 @@ path.chain %>%
 ```
 
 ```{yaml}
-kDirs:
-  kRoot: files/
-  kData:
-    kRoot: data/
-    kExample1: kExample1
-    kExample2: kExample2
-    kPersons: kPersons
-  kDocs:
-    kRoot: docs/
-    kSchema: kSchema
+default:
+  kDirs:
+    kRoot: files/
+    kData:
+      kRoot: data/
+      kExample1: kExample1
+      kExample2: kExample2
+      kPersons: kPersons
+    kDocs:
+      kRoot: docs/
+      kSchema: kSchema
 ```
 
 As you can see, such structur of the config file seems to be more legible than the one produced with
