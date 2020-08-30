@@ -110,7 +110,7 @@
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>If you are using RStudio, you know that among many excellent features of this IDE there is a <strong>path autocompletion</strong>.</p>
-<p><img src="reference/figures/rstudio-autocompletion.gif" alt="rstudio"></p>
+<p><img src="reference/figures/path_chain.gif" alt="rstudio"></p>
 <p>However, you can also meet situations, when that may be not enough. Most of all, I mean bigger projects, where you store a complex file structure in the <strong>config</strong> file. You can handle such configuration YAML file using the library named <a href="https://github.com/rstudio/config"><code>config</code></a>. You may encounter a situation, when you’ll want to save current directory structure in this config.</p>
 <div id="basic-usage" class="section level3">
 <h3 class="hasAnchor">
@@ -125,7 +125,7 @@
 <a class="sourceLine" id="cb2-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co"># Sample structure we've already created looks as follows</span></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10">fs<span class="op">::</span><span class="kw"><a href="http://fs.r-lib.org/reference/dir_tree.html">dir_tree</a></span>(tmp)</a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; /tmp/RtmpjZLzHv/files</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; /tmp/RtmpMkNE9g/files</span></a>
 <a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; ├── data</span></a>
 <a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; │   ├── example1.RData</span></a>
 <a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; │   ├── example2.RData</span></a>
@@ -134,12 +134,12 @@
 <a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt;     └── schema.txt</span></a>
 <a class="sourceLine" id="cb2-18" data-line-number="18"></a>
 <a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co"># Loading stucture</span></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20">file.structure &lt;-<span class="st"> </span><span class="kw">create_path_chain</span>(tmp)</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">file.structure &lt;-<span class="st"> </span><span class="kw"><a href="reference/path_chain.html">path_chain</a></span>(tmp)</a>
 <a class="sourceLine" id="cb2-21" data-line-number="21">file.structure<span class="op">$</span>data<span class="op">$</span>example1.RData</a>
 <a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt; [1] "files/data/example1.RData"</span></a>
 <a class="sourceLine" id="cb2-23" data-line-number="23"></a>
 <a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co"># Loading stucture with naming convention</span></a>
-<a class="sourceLine" id="cb2-25" data-line-number="25">file.structure &lt;-<span class="st"> </span><span class="kw">create_path_chain</span>(tmp, <span class="dt">naming =</span> naming_k)</a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">file.structure &lt;-<span class="st"> </span><span class="kw"><a href="reference/path_chain.html">path_chain</a></span>(tmp, <span class="dt">naming =</span> naming_k)</a>
 <a class="sourceLine" id="cb2-26" data-line-number="26">file.structure<span class="op">$</span>kData<span class="op">$</span>kExample1</a>
 <a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">#&gt; [1] "files/data/example1.RData"</span></a>
 <a class="sourceLine" id="cb2-28" data-line-number="28"></a>
@@ -180,10 +180,10 @@
 <a class="sourceLine" id="cb5-2" data-line-number="2">is_path_valid &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"</span><span class="ch">\\</span><span class="st">.fst"</span>, x)) <span class="kw"><a href="reference/print.html">print</a></span>(<span class="st">"Invalid file"</span>)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw"><a href="reference/on_validate_path.html">on_validate_path</a></span>(is_path_valid)</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">level2.b &lt;-<span class="st"> </span><span class="kw"><a href="reference/path_chain.html">path_chain</a></span>(<span class="st">"fileA.RData"</span>)</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">level2.a &lt;-<span class="st"> </span><span class="kw"><a href="reference/path_chain.html">path_chain</a></span>(<span class="st">"fileB.fst"</span>)</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">level1   &lt;-<span class="st"> </span><span class="kw"><a href="reference/path_chain.html">path_chain</a></span>(<span class="st">"data"</span>, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">level2.a =</span> level2.a , <span class="dt">level2.b =</span> level2.b))</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">root     &lt;-<span class="st"> </span><span class="kw"><a href="reference/path_chain.html">path_chain</a></span>(<span class="st">"files"</span>, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(level1))</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">level2.b &lt;-<span class="st"> </span><span class="kw"><a href="reference/path_link.html">path_link</a></span>(<span class="st">"fileA.RData"</span>)</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">level2.a &lt;-<span class="st"> </span><span class="kw"><a href="reference/path_link.html">path_link</a></span>(<span class="st">"fileB.fst"</span>)</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">level1   &lt;-<span class="st"> </span><span class="kw"><a href="reference/path_link.html">path_link</a></span>(<span class="st">"data"</span>, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">level2.a =</span> level2.a , <span class="dt">level2.b =</span> level2.b))</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">root     &lt;-<span class="st"> </span><span class="kw"><a href="reference/path_link.html">path_link</a></span>(<span class="st">"files"</span>, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(level1))</a>
 <a class="sourceLine" id="cb5-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb5-10" data-line-number="10">root<span class="op">$</span>data<span class="op">$</span>level2.a</a>
 <a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; [1] "Path {.x} not exists"</span></a>

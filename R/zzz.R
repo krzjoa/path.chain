@@ -1,4 +1,5 @@
-.onUnload <- function ( libpath ) {
+#' @param libpath Library path
+.onUnload <- function(libpath){
   #' Removing options, which cab be set when functions
   #' `on_path_not_exists` or `on_validate_path` were called
   .Options$path.chain.on.path.not.exists <- NULL

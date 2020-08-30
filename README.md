@@ -50,7 +50,7 @@ create_sample_dir(tmp, override = TRUE)
 
 # Sample structure we've already created looks as follows
 fs::dir_tree(tmp)
-#> /tmp/Rtmpxweu19/files
+#> /tmp/RtmpMkNE9g/files
 #> ├── data
 #> │   ├── example1.RData
 #> │   ├── example2.RData
@@ -110,13 +110,16 @@ on_path_not_exists(~ print("Path {.x} not exists"))
 is_path_valid <- function(x) if (!grepl("\\.fst", x)) print("Invalid file")
 on_validate_path(is_path_valid)
 
-level2.b <- path_chain("fileA.RData")
-level2.a <- path_chain("fileB.fst")
-level1   <- path_chain("data", list(level2.a = level2.a , level2.b = level2.b))
-root     <- path_chain("files", list(level1))
+level2.b <- path_link("fileA.RData")
+level2.a <- path_link("fileB.fst")
+level1   <- path_link("data", list(level2.a = level2.a , level2.b = level2.b))
+root     <- path_link("files", list(level1))
 
 root$data$level2.a
-#> NULL
+#> [1] "Path {.x} not exists"
+#> [1] "files/data/fileB.fst"
 root$data$level2.b
-#> NULL
+#> [1] "Path {.x} not exists"
+#> [1] "Invalid file"
+#> [1] "files/data/fileA.RData"
 ```
