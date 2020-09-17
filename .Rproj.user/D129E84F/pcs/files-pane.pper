@@ -1,5 +1,5 @@
 {
-    "path" : "~/Pulpit/Rlibs/path.chain",
+    "path" : "~/Pulpit/Rlibs/path.chain/tests/testthat",
     "sortOrder" : [
         {
             "ascending" : true,
