@@ -18,6 +18,14 @@ stciker](https://img.shields.io/badge/buy%20hex-path.chain-green)](https://www.r
 
 ## Installation
 
+`path.chain` is available on CRAN, so you can install it using simply:
+
+``` r
+install.packages('path.chain')
+```
+
+Dev version is available on GitHub:
+
 ``` r
 # install.packages("devtools")
 devtools::install_github("krzjoa/path.chain")
