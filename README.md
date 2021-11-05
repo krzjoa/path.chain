@@ -12,7 +12,7 @@ status](https://travis-ci.org/krzjoa/path.chain.svg?branch=master)](https://trav
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/krzjoa/path.chain?branch=master&svg=true)](https://ci.appveyor.com/project/krzjoa/path.chain)
 [![Buy hex
-stciker](https://img.shields.io/badge/buy%20hex-path.chain-green)](https://www.redbubble.com/i/sticker/path-chain-R-package-hex-sticker-by-krzjoa/45140988.EJUG5?asc=u)
+stciker](https://img.shields.io/badge/buy%20hex-path.chain-green?style=flat&logo=redbubble)](https://www.redbubble.com/i/sticker/path-chain-R-package-hex-sticker-by-krzjoa/45140988.EJUG5?asc=u)
 <!-- badges: end -->
 
 > Concise structure for chainable paths
