@@ -7,8 +7,6 @@
 
 [![CRAN status](https://www.r-pkg.org/badges/version/path.chain)](https://CRAN.R-project.org/package=path.chain)
 [![Documentation](https://img.shields.io/badge/documentation-path.chain-orange.svg?colorB=E91E63)](https://krzjoa.github.io/path.chain/)
-[![Travis build
-status](https://travis-ci.org/krzjoa/path.chain.svg?branch=master)](https://travis-ci.org/krzjoa/path.chain)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/krzjoa/path.chain?branch=master&svg=true)](https://ci.appveyor.com/project/krzjoa/path.chain)
 [![Buy hex
