@@ -44,7 +44,7 @@ path_children <- function(path.chain){
 #' print(chainable.path)
 #' @export
 print.path_chain <- function(x, ...){
-  cat(sprintf("path_chain \n root: %s \n childen: %d",
+  cat(sprintf("path_chain \n root: %s \n children: %d",
               attr(x, 'node'),
               length(x)))
 }
