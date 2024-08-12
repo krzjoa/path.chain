@@ -83,7 +83,9 @@ path_link <- function(node = NULL, children = NULL){
 #' @name path_chain
 #' @title Get directory structure and create path_chain object
 #' @param path root of the directory structure
-#' @param naming function, which defines naming convention
+#' @param naming function which defines naming convention
+#' @param levels number of hierarchy levels that recursion should go deep; defaults to +Inf
+#' @param only.directories boolean to ignore files and only considers directories.
 #' @description Returns `path_chain` object, which reflects
 #' structure of the folder passed with `path` param
 #' @return path_chain object
@@ -98,16 +100,20 @@ path_link <- function(node = NULL, children = NULL){
 #' chainable.path <- path_chain(tmp, naming = naming_k)
 #' chainable.path$kData$kPersons
 #' @export
-path_chain <- function(path, naming = basename){
-  if(dir.exists(path)){
+path_chain <- function(path, naming = basename, levels = +Inf, only.directories = FALSE) {
+  if (dir.exists(path)) {
     file.list <- list.files(path, recursive = FALSE,
                             include.dirs = TRUE)
     file.list <- setNames(file.path(path, file.list), file.list)
-    call_path_chain <- function(x) path_chain(x, naming = naming)
-    children <-Map(call_path_chain, file.list)
-    children <- setNames(children, naming(file.list))
-    path_link(node = basename(path), children)
+    call_path_chain <- function(x, levels) {
+      path_chain(x, naming = naming, levels = levels - 1, only.directories)
+    }
+    if (levels > 0) {
+      children <- Map(call_path_chain, file.list, levels)
+      children <- setNames(children, naming(file.list))
+      path_link(node = basename(path), children)
+    }
   } else {
-    path_link(node = basename(path))
+    if (!only.directories) path_link(node = basename(path))
   }
 }
