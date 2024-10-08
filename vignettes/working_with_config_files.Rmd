@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-Assume we are exloring some data set, and during our work, we've created a number 
+Assume we are exploring some data set, and during our work, we've created a number 
 of files with their specific structure.
 
 ```{r setup}
@@ -42,7 +42,7 @@ full.path.chain %>%
   yaml::write_yaml(temp_path("config.yaml"))
 ```
 
-Configurtion file **config.yaml** will look as follows:
+Configuration file **config.yaml** will look as follows:
 ```{yaml}
 '.': files
 data:
@@ -159,6 +159,8 @@ path.chain %>%
 
 ```
 
+You can also use `only.directories` flag or specify `levels` to narrow down the results.
+
 ```{yaml}
 default:
   kDirs:
@@ -173,7 +175,7 @@ default:
       kSchema: kSchema
 ```
 
-As you can see, such structur of the config file seems to be more legible than the one produced with
+As you can see, such structure of the config file seems to be more legible than the one produced with
 `full_path_chain` function. The config file shown above can be easily consumed using `config` package and `as_path_chain` function.
 
 ```{r as_path_chain}

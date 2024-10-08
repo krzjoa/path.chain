@@ -1,13 +1,17 @@
 Package: path.chain
 Type: Package
 Title: Concise Structure for Chainable Paths
-Version: 0.2.0
-Authors@R: 
+Version: 1.0.0
+Authors@R: c( 
     person(given   = "Krzysztof",
            family  = "Joachimiak",
            role    = c("aut", "cre"),
            email   = "joachimiak.krzysztof@gmail.com",
-           comment = c(ORCID = "0000-0003-4780-7947"))
+           comment = c(ORCID = "0000-0003-4780-7947")),
+    person(given   = "Peter",
+           family  = "Wurm",
+           role    = c("ctb"))
+    )
 Description: Provides path_chain class and functions, which facilitates loading and saving 
              directory structure in YAML configuration files via 'config' package. 
              The file structure you created during exploration can be transformed 
