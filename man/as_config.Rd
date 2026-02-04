@@ -8,8 +8,7 @@
 \usage{
 as_config(x, config = "default", wrap = "dirs", ...)
 
-\method{as_config}{path_chain}(x, config = "default", wrap = "dirs",
-  ..., root.name = "root.dir")
+\method{as_config}{path_chain}(x, config = "default", wrap = "dirs", ..., root.name = "root.dir")
 
 \method{as_config}{list}(x, config = "default", wrap = "dirs", ...)
 }
@@ -25,17 +24,17 @@ as_config(x, config = "default", wrap = "dirs", ...)
 \item{root.name}{key for root directory (for path_chain only)}
 }
 \value{
-list compatible with `{config}` package
+list compatible with `\{config\}` package
 }
 \description{
 This function is provided to keep compatibility
-with `{config}` package, which requires existence of default key.
+with `\{config\}` package, which requires existence of default key.
 Additionally, we can at once wrap our structure with some other keys,
-in order to not to mix directory structur with different keys.
+in order to not to mix directory structure with different keys.
 }
 \examples{
 library(magrittr)
-# Initalizaing sample directory
+# Initializing sample directory
 tmp <- create_temp_dir("files")
 create_sample_dir(tmp, override = TRUE)
 full_path_chain(tmp, "kRoot", naming_k) \%>\%

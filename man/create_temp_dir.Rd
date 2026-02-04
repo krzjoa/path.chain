@@ -4,8 +4,12 @@
 \alias{create_temp_dir}
 \title{Create temporary diectory and return its name}
 \usage{
-create_temp_dir(..., warn = FALSE, recursive = FALSE,
-  fsep = .Platform$file.sep)
+create_temp_dir(
+  ...,
+  warn = FALSE,
+  recursive = FALSE,
+  fsep = .Platform$file.sep
+)
 }
 \arguments{
 \item{...}{arbitrary character objects}

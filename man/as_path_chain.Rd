@@ -34,7 +34,7 @@ path_chain(tmp, naming = naming_k) \%>\%
   as.list(root.name = "kRoot") \%>\%
   as_config("default", "kDirs") \%>\%
   yaml::write_yaml(temp_path("config.yaml"))
-chainable.path <- config::get("kDirs", "defaul", temp_path("config.yaml")) \%>\%
+chainable.path <- config::get("kDirs", "default", temp_path("config.yaml")) \%>\%
  as_path_chain()
 class(chainable.path)
 chainable.path$.

@@ -21,7 +21,7 @@ Encoding: UTF-8
 LazyData: true
 BugReports: https://github.com/krzjoa/path.chain/issues
 URL: https://github.com/krzjoa/path.chain, https://krzjoa.github.io/path.chain/
-RoxygenNote: 6.1.1
+RoxygenNote: 7.3.2
 Suggests: 
     testthat (>= 2.1.0),
     knitr,
@@ -29,9 +29,9 @@ Suggests:
     config,
     yaml,
     fs,
-    magrittr
+    magrittr,
+    logger
 VignetteBuilder: knitr
 Imports: 
     rlang,
-    stringi,
-    logger
+    stringi

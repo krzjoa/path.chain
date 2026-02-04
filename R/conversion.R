@@ -21,7 +21,7 @@
 #'   as.list(root.name = "kRoot") %>%
 #'   as_config("default", "kDirs") %>%
 #'   yaml::write_yaml(temp_path("config.yaml"))
-#' chainable.path <- config::get("kDirs", "defaul", temp_path("config.yaml")) %>%
+#' chainable.path <- config::get("kDirs", "default", temp_path("config.yaml")) %>%
 #'  as_path_chain()
 #' class(chainable.path)
 #' chainable.path$.
@@ -66,14 +66,14 @@ as.list.path_chain <- function(x, ..., root.name = "root.dir"){
 #' @param wrap key name to wrap directory structure
 #' @param root.name key for root directory (for path_chain only)
 #' @param ... additional arguments (not used at the moment)
-#' @return list compatible with `{config}` package
+#' @return list compatible with `\{config\}` package
 #' @description This function is provided to keep compatibility
-#' with `{config}` package, which requires existence of default key.
+#' with `\{config\}` package, which requires existence of default key.
 #' Additionally, we can at once wrap our structure with some other keys,
-#' in order to not to mix directory structur with different keys.
+#' in order to not to mix directory structure with different keys.
 #' @examples
 #' library(magrittr)
-#' # Initalizaing sample directory
+#' # Initializing sample directory
 #' tmp <- create_temp_dir("files")
 #' create_sample_dir(tmp, override = TRUE)
 #' full_path_chain(tmp, "kRoot", naming_k) %>%

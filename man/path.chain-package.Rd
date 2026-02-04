@@ -11,6 +11,15 @@ which allow us to represent directory structure as
 nested R objects. It can be easily saved as .yaml
 files so that we can later load it and use in our project.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/krzjoa/path.chain}
+  \item \url{https://krzjoa.github.io/path.chain/}
+  \item Report bugs at \url{https://github.com/krzjoa/path.chain/issues}
+}
+
+}
 \author{
 Krzysztof Joachimiak
 }

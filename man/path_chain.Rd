@@ -4,12 +4,16 @@
 \alias{path_chain}
 \title{Get directory structure and create path_chain object}
 \usage{
-path_chain(path, naming = basename)
+path_chain(path, naming = basename, levels = +Inf, only.directories = FALSE)
 }
 \arguments{
 \item{path}{root of the directory structure}
 
-\item{naming}{function, which defines naming convention}
+\item{naming}{function which defines naming convention}
+
+\item{levels}{number of hierarchy levels that recursion should go deep; defaults to +Inf}
+
+\item{only.directories}{boolean to ignore files and only considers directories.}
 }
 \value{
 path_chain object
